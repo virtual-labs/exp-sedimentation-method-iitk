@@ -1857,34 +1857,50 @@ function TableDetails(){
       console.log(totalSeconds);
     }
 
+    // Flag to track if we have already advanced the tutorial for starting the timer
+    let matchStartStep = false; 
+    let matchStopStep = false;
+
     document.getElementById("startStopBtn").addEventListener("click", function () {
-     
-      if(isDropIntoCylinder){
+      // Toggle Timer Logic (Always active)
       if (!timer) {
-         step++;  //19
-         currentInstruction();
-        interval = setInterval(() => {
-          sec++;
-          if (sec === 60) {
-            sec = 0;
-            min++;
-            if (min === 60) {
-              min = 0;
-              hr++;
-            }
-          }
-          updateStopwatch();
-        }, 1000);
-        this.innerText = "Pause";
-        timer = true;
-      } else if(countSampleDisk==5 && atDisk6) {
-        step++; //30
-        currentInstruction();
-        clearInterval(interval);
-        this.innerText = "Start";
-        timer = false;
+         // Start Timer
+         interval = setInterval(() => {
+           sec++;
+           if (sec === 60) {
+             sec = 0;
+             min++;
+             if (min === 60) {
+               min = 0;
+               hr++;
+             }
+           }
+           updateStopwatch();
+         }, 1000);
+         this.innerText = "Pause";
+         timer = true;
+
+         // Tutorial Step Advancement (Conditional)
+         // Only advance if we are at the correct stage and haven't advanced yet
+         if(isDropIntoCylinder && !matchStartStep){
+             step++;  //19
+             currentInstruction();
+             matchStartStep = true;
+         }
+
+      } else {
+         // Stop/Pause Timer
+         clearInterval(interval);
+         this.innerText = "Start";
+         timer = false;
+
+         // Tutorial Step Advancement (Conditional)
+         if(countSampleDisk==5 && atDisk6 && !matchStopStep) {
+            step++; //30
+            currentInstruction();
+            matchStopStep = true;
+         }
       }
-    }
     });
 
     document.getElementById("resetBtn").addEventListener("click", function () {
