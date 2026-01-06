@@ -1,1597 +1,1946 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family:Arial, Helvetica, sans-serif
-  }
-
-  html, body {
-    height: 100%;
-    width: 100%;
-
-    color: white;
-    overflow: hidden;
-  }
-#StartButton{
- background-color: rgb(31, 151, 31);
-    width: 126px;
-    cursor: pointer;
-    height: 58px;
-    position: absolute;
-    font-weight: bold;
-    color: white;
-    text-align: center;
-    padding: 5px;
-    left: 50%;
-    top: 50%;
-    border-radius: 20px;
-    font-size: 20px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
-#StartButton:hover{
-  background-color:rgb(33, 176, 33) ;
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+
+  color: white;
+  overflow: hidden;
 }
-  .container {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    width: 100vw;
 
-    padding: 10px;
-    border-radius: 15px;
-  }
+#StartButton {
+  background-color: rgb(31, 151, 31);
+  width: 140px;
+  /* Reduced width */
+  cursor: pointer;
+  height: auto;
+  position: absolute;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  padding: 10px 15px;
+  /* Reduced padding */
+  /* Position below the TITLE (centered) */
+  left: 50%;
+  top: 280px;
+  /* Kept 280px or move up? User said "below lab ii". Lab II title is at top. 160px is better. */
+  top: 40%;
+  /* Using % might be safer if title is %. Title is ~6%. 25% is good. */
+  transform: translateX(-50%);
+  /* Re-center */
+  border-radius: 30px;
+  font-size: 16px;
+  /* Reduced font size */
+  border: 2px solid white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  /* transition: all 0.3s ease; Removed per user request */
+  z-index: 100;
+}
 
-  .top-panel {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 10px;
-  }
+#StartButton:hover {
+  background-color: rgb(33, 176, 33);
+  /* transform: translateY(-2px); Removed per user request */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
 
-  .instruction-box {
-    flex: 1;
-    font-size: 1em;
-    padding: 10px;
-    border:1px solid #adb0b0;
-    border-radius: 4px;
-   background-color: lightgreen;
-    color: rgb(0, 0, 0);
-    font-weight: 500;
-    white-space: nowrap;
-    overflow: hidden;
-  }
+#StartButton:hover {
+  background-color: rgb(33, 176, 33);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+
+  padding: 10px;
+  border-radius: 15px;
+}
+
+.top-panel {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.instruction-box {
+  flex: 1;
+  font-size: 1em;
+  padding: 10px;
+  border: 1px solid #8e9191;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  color: rgb(0, 0, 0);
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
 /* StopWatch */
-  #stopwatchDisplay {
-    position: absolute;
-      font-size: 60px;
-      left:3%;
-      bottom: 98%;
-     color: #000000;
-    }
-    .btn {
-      font-size: 20px;
-      padding: 10px 25px;
-      margin: 10px;
-      cursor: pointer;
-      position: absolute;
-     
-      top: 2%;
-    }
-    #startStopBtn{
-      top:2%;
-       left:3%;
-    }
-    #resetBtn{
-       top:2%;
-       left:55%;
-    }
+/* StopWatch Container */
+.stopWatch {
+  position: absolute;
+  top: -20px;
+  /* Full up per user request */
+  right: auto;
+  left: 30px;
+  display: grid;
+  grid-template-areas:
+    "timer timer"
+    "btn1 btn2";
+  gap: 8px;
+  /* Reduced gap */
+  justify-items: center;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 10px;
+  /* Reduced padding */
+  border-radius: 15px;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
 
-  .language-toggle {
+/* StopWatch Display */
+#stopwatchDisplay {
+  grid-area: timer;
+  position: relative;
+  /* Reset absolute */
+  left: auto;
+  bottom: auto;
+  font-size: 32px;
+  /* Smaller font */
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  color: #333;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 4px 10px;
+  /* Reduced padding */
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 5px;
+}
 
-    padding: 10px;
-    border:1px solid #adb0b0;
-    border-radius: 4px;
-    border-radius: 10px;
-    cursor: pointer;
-    color: #000000;
-    position: relative;
-    font-size: 1em;
-    font-weight: 500;
-  }
+.btn {
+  font-size: 13px;
+  /* Smaller font */
+  padding: 5px 12px;
+  /* Reduced padding */
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  background-color: #f0f0f0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s;
+  font-weight: bold;
+  color: #333;
+  position: relative;
+  /* Reset absolute */
+  top: auto;
+  margin: 0;
+}
 
-  .language-panel {
-    position: absolute;
-    top: 60px;
-    width: 120px;
-    right: 8px;
-    background:white;
-    border-radius: 4px;
-   border:1px solid #adb0b0;
-    display: none;
-    flex-direction: column;
-    gap: 10px;
-    padding: 10px;
-    color: black;
-    z-index: 100;
+.btn:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
 
-  }
-  .language-panel .lang{
-    padding: .3em;
-  }
-  .language-panel .lang:hover{
+#startStopBtn {
+  grid-area: btn1;
+  top: auto;
+  left: auto;
+}
 
-  }
-
-
-  .language-panel div {
-    cursor: pointer;
-  }
-
-  .main-content {
-    display: flex;
-    flex: 1;
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-
-  .simulation-area {
-    border:1px solid #adb0b0;
-    border-radius: 4px;
-    flex: 1;
-    width: 100%;
-    position: relative;
-    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('bg-lab.png') no-repeat center center;
-    background-size: cover;
-    height: 100%;
-    overflow: hidden;
-  }
-  .jar {
-    position: absolute;
-    bottom: 5%;
-    left: 65%;
-    transform: translateX(-50%);
-    width: 15em;
-
-    height: auto;
-    object-fit: cover;
-    background-size: contain;
-  }
+#resetBtn {
+  grid-area: btn2;
+  top: auto;
+  left: auto;
+}
 
 
-  .andresen-container {
-    position: absolute;
-    bottom: 5%;
-    left: 80%;
-    transform: translateX(-50%);
-    width: 12em;
-    height: 30em;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
-    z-index: 5;
-  }
 
-  #andresen-lower {
-    width: 50%;
-    height: auto;
-    object-fit: contain;
-    z-index: 1;
-    position: relative;
-        bottom: -30%;
-        cursor: pointer;
+#startStopBtn {
+  grid-area: btn1;
+  top: auto;
+  left: auto;
+}
 
-  }
+#resetBtn {
+  grid-area: btn2;
+  top: auto;
+  left: auto;
+}
 
-  #andresen-upper {
-    
-    width: 100%;
-    object-fit: contain;
-    z-index: 2;
+.language-toggle {
 
-    position: absolute;
-    bottom: 4%;
-    margin-bottom: -10px; 
-    /* Adjust this value to make the parts connect properly */
-  }
+  padding: 10px;
+  border: 1px solid #adb0b0;
+  border-radius: 4px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: #000000;
+  position: relative;
+  font-size: 1em;
+  font-weight: 500;
+}
+
+.language-panel {
+  position: absolute;
+  top: 60px;
+  width: 120px;
+  right: 8px;
+  background: white;
+  border-radius: 4px;
+  border: 1px solid #adb0b0;
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  color: black;
+  z-index: 100;
+
+}
+
+.language-panel .lang {
+  padding: .3em;
+}
+
+.language-panel .lang:hover {}
+
+
+.language-panel div {
+  cursor: pointer;
+}
+
+.main-content {
+  display: flex;
+  flex: 1;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.simulation-area {
+  border: 1px solid #adb0b0;
+  border-radius: 4px;
+  flex: 1;
+  width: 100%;
+  position: relative;
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('bg-lab.png') no-repeat center center;
+  background-size: cover;
+  height: 100%;
+  overflow: hidden;
+}
+
+.jar {
+  position: absolute;
+  bottom: 5%;
+  left: 65%;
+  transform: translateX(-50%);
+  width: 15em;
+
+  height: auto;
+  object-fit: cover;
+  background-size: contain;
+}
+
+
+.andresen-container {
+  position: absolute;
+  bottom: 5%;
+  left: 80%;
+  transform: translateX(-50%);
+  width: 12em;
+  height: 30em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  z-index: 5;
+}
+
+#andresen-lower {
+  width: 50%;
+  height: auto;
+  object-fit: contain;
+  z-index: 1;
+  position: relative;
+  bottom: -30%;
+  cursor: pointer;
+
+}
+
+#andresen-upper {
+
+  width: 100%;
+  object-fit: contain;
+  z-index: 2;
+
+  position: absolute;
+  bottom: 4%;
+  margin-bottom: -10px;
+  /* Adjust this value to make the parts connect properly */
+}
 
 /* Add Event Listner To andresen-lower */
 @keyframes MovePipetteToDisk1 {
-  0%{
+  0% {
     left: 46%;
     top: 82.5%;
     transform: skewY(0deg);
   }
-  30%{
-    left: 46%;
-    top: 53.5%;
-    transform: skewY(0deg);
-  }
-50%{
-  left: 52%;
-  top: 53.5%;
-  transform: skewY(0deg);
-}
-  70%{
-   left: 60%;
-    top: 53.5%;
-    transform: skewY(0deg);
-  }
-80%{
-   left: 70%;
-    top: 53.5%;
-    transform: skewY(0deg);
-}
-100%{
-  left: 75%;
-    top: 53.5%;
-    transform: skewY(0deg);
-}
 
-}
-@keyframes MovePipetteToDisk2 {
-  0%{
-   left: 51.25%;
-    top: 82.5%;
-     transform: skewY(0deg);
-  }
-  30%{
-  left: 51.25%;
+  30% {
+    left: 46%;
     top: 53.5%;
-     transform: skewY(0deg);
+    transform: skewY(0deg);
   }
-50%{
-  left: 55.25%;
-  top: 53.5%;
-   transform: skewY(0deg);
-}
-  70%{
+
+  50% {
+    left: 52%;
+    top: 53.5%;
+    transform: skewY(0deg);
+  }
+
+  70% {
     left: 60%;
     top: 53.5%;
-     transform: skewY(0deg);
+    transform: skewY(0deg);
   }
-80%{
-   left: 70%;
-    top: 53.5%;
-     transform: skewY(0deg);
-}
-100%{
-   left: 75%;
-    top: 53.5%;
-     transform: skewY(0deg);
-}
 
-}
-@keyframes MovePipetteToDisk3 {
-  0%{
-     left: 57.25%;
-    top: 82.5%;
-     transform: skewY(0deg);
-  }
-  30%{
-    left: 57.25%;
-    top: 53.5%;
-     transform: skewY(0deg);
-  }
-50%{
-   left: 65%;
-    top: 53.5%;
-     transform: skewY(0deg);
-}
-  70%{
-     left: 70%;
-    top: 53.5%;
-     transform: skewY(0deg);
-  }
-80%{
-   left: 72%;
-    top: 53.5%;
-     transform: skewY(0deg);
-}
-100%{
-   left: 75%;
-    top: 53.5%;
-     transform: skewY(0deg);
-}
-
-}
-@keyframes MovePipetteToDisk4 {
-  0%{
-     left: 61.25%;
-    top: 82.5%;
-     transform: skewY(0deg);
-  }
-  30%{
-    left: 61.25%;
-    top: 53.5%;
-     transform: skewY(0deg);
-  }
-50%{
-  left: 68%;
-    top: 53.5%;
-     transform: skewY(0deg);
-}
-  70%{
+  80% {
     left: 70%;
     top: 53.5%;
-     transform: skewY(0deg);
+    transform: skewY(0deg);
   }
-80%{
-  left: 72%;
+
+  100% {
+    left: 75%;
     top: 53.5%;
-     transform: skewY(0deg);
-}
-100%{
- left: 75%;
-    top: 53.5%;
-     transform: skewY(0deg);
-}
+    transform: skewY(0deg);
+  }
 
 }
+
+@keyframes MovePipetteToDisk2 {
+  0% {
+    left: 51.25%;
+    top: 82.5%;
+    transform: skewY(0deg);
+  }
+
+  30% {
+    left: 51.25%;
+    top: 53.5%;
+    transform: skewY(0deg);
+  }
+
+  50% {
+    left: 55.25%;
+    top: 53.5%;
+    transform: skewY(0deg);
+  }
+
+  70% {
+    left: 60%;
+    top: 53.5%;
+    transform: skewY(0deg);
+  }
+
+  80% {
+    left: 70%;
+    top: 53.5%;
+    transform: skewY(0deg);
+  }
+
+  100% {
+    left: 75%;
+    top: 53.5%;
+    transform: skewY(0deg);
+  }
+
+}
+
+@keyframes MovePipetteToDisk3 {
+  0% {
+    left: 57.25%;
+    top: 82.5%;
+    transform: skewY(0deg);
+  }
+
+  30% {
+    left: 57.25%;
+    top: 53.5%;
+    transform: skewY(0deg);
+  }
+
+  50% {
+    left: 65%;
+    top: 53.5%;
+    transform: skewY(0deg);
+  }
+
+  70% {
+    left: 70%;
+    top: 53.5%;
+    transform: skewY(0deg);
+  }
+
+  80% {
+    left: 72%;
+    top: 53.5%;
+    transform: skewY(0deg);
+  }
+
+  100% {
+    left: 75%;
+    top: 53.5%;
+    transform: skewY(0deg);
+  }
+
+}
+
+@keyframes MovePipetteToDisk4 {
+  0% {
+    left: 61.25%;
+    top: 82.5%;
+    transform: skewY(0deg);
+  }
+
+  30% {
+    left: 61.25%;
+    top: 53.5%;
+    transform: skewY(0deg);
+  }
+
+  50% {
+    left: 68%;
+    top: 53.5%;
+    transform: skewY(0deg);
+  }
+
+  70% {
+    left: 70%;
+    top: 53.5%;
+    transform: skewY(0deg);
+  }
+
+  80% {
+    left: 72%;
+    top: 53.5%;
+    transform: skewY(0deg);
+  }
+
+  100% {
+    left: 75%;
+    top: 53.5%;
+    transform: skewY(0deg);
+  }
+
+}
+
 @keyframes MovePipetteToDisk5 {
-  0%{
+  0% {
     left: 65.25%;
     top: 82.5%;
-     transform: skewY(0deg);
+    transform: skewY(0deg);
   }
-  30%{
+
+  30% {
     left: 65.25%;
     top: 53.5%;
-     transform: skewY(0deg);
+    transform: skewY(0deg);
   }
-  50%{
-   left: 73%;
+
+  50% {
+    left: 73%;
     top: 53.5%;
-     transform: skewY(0deg);
+    transform: skewY(0deg);
   }
-100%{
-  left: 75%;
+
+  100% {
+    left: 75%;
     top: 53.5%;
-     transform: skewY(0deg);
-}
+    transform: skewY(0deg);
+  }
 
 }
+
 @keyframes MovePipetteToDisk6 {
-  0%{
+  0% {
     left: 71.25%;
     top: 82.5%;
-     transform: skewY(0deg);
+    transform: skewY(0deg);
   }
-  30%{
-   left: 71.25%;
+
+  30% {
+    left: 71.25%;
     top: 53.5%;
-     transform: skewY(0deg);
+    transform: skewY(0deg);
   }
-50%{
- left: 72%;
+
+  50% {
+    left: 72%;
     top: 53.5%;
-     transform: skewY(0deg);
-}
-100%{
-  left: 75%;
+    transform: skewY(0deg);
+  }
+
+  100% {
+    left: 75%;
     top: 53.5%;
-     transform: skewY(0deg);
-}
+    transform: skewY(0deg);
+  }
 
 }
 
 
 @keyframes MovePipetteToCylinder1 {
-  0%{
-   left: 75%;
+  0% {
+    left: 75%;
     top: 53.5%;
-     transform: skewY(0deg);
+    transform: skewY(0deg);
   }
-  30%{
-     left: 70%;
+
+  30% {
+    left: 70%;
     top: 53.5%;
-     transform: skewY(0deg);
+    transform: skewY(0deg);
   }
-50%{
-   left: 60%;
+
+  50% {
+    left: 60%;
     top: 53.5%;
-     transform: skewY(0deg);
-}
-  70%{
+    transform: skewY(0deg);
+  }
+
+  70% {
     left: 52%;
     top: 53.5%;
-     transform: skewY(0deg);
+    transform: skewY(0deg);
   }
-80%{
- left: 46%;
+
+  80% {
+    left: 46%;
     top: 53.5%;
     transform: skewY(0deg);
-}
-100%{
-  left: 46%;
+  }
+
+  100% {
+    left: 46%;
     top: 82.5%;
     transform: skewY(0deg);
-}
+  }
 
 }
+
 @keyframes MoveDropWithDisk1 {
- 0%{
-  left: 78%;
-  bottom: 35%;
- }
- 30%{
-  left: 72.5%;
-  bottom: 35%;
- } 
- 50%{
-  left: 62.5%;
-  bottom: 35%;
- }
- 70%{
-  left: 54.5%;
-  bottom: 35%;
- }
- 80%{
-  left: 48.5%;
-  bottom: 35%;
- }
- 100%{
-   left: 48.5%;
-  bottom: 6%;
- }
+  0% {
+    left: 78%;
+    bottom: 35%;
+  }
+
+  30% {
+    left: 72.5%;
+    bottom: 35%;
+  }
+
+  50% {
+    left: 62.5%;
+    bottom: 35%;
+  }
+
+  70% {
+    left: 54.5%;
+    bottom: 35%;
+  }
+
+  80% {
+    left: 48.5%;
+    bottom: 35%;
+  }
+
+  100% {
+    left: 48.5%;
+    bottom: 6%;
+  }
 }
 
 
 @keyframes MovePipetteToCylinder2 {
-  0%{
-   left: 75%;
+  0% {
+    left: 75%;
     top: 53.5%;
-     transform: skewY(0deg);
+    transform: skewY(0deg);
   }
-  30%{
-     left: 70%;
+
+  30% {
+    left: 70%;
     top: 53.5%;
-     transform: skewY(0deg);
+    transform: skewY(0deg);
   }
-50%{
-  left: 60%;
+
+  50% {
+    left: 60%;
     top: 53.5%;
-     transform: skewY(0deg);
-}
-  70%{
+    transform: skewY(0deg);
+  }
+
+  70% {
     left: 55.25%;
-  top: 53.5%;
-   transform: skewY(0deg);
-  }
-80%{
- left: 51.25%;
     top: 53.5%;
-     transform: skewY(0deg);
-}
-100%{
-   left: 51.25%;
+    transform: skewY(0deg);
+  }
+
+  80% {
+    left: 51.25%;
+    top: 53.5%;
+    transform: skewY(0deg);
+  }
+
+  100% {
+    left: 51.25%;
     top: 82.5%;
-     transform: skewY(0deg);
-}
+    transform: skewY(0deg);
+  }
 }
 
 
 @keyframes MoveDropWithDisk2 {
- 0%{
-  left: 78%;
-  bottom: 35%;
- }
- 30%{
-  left: 72.5%;
-  bottom: 35%;
- } 
- 50%{
-  left: 62.5%;
-  bottom: 35%;
- }
- 70%{
-  left: 57.75%;
-  bottom: 35%;
- }
- 80%{
-  left: 53.75%;
-  bottom: 35%;
- }
- 100%{
-   left: 53.75%;
-  bottom: 6%;
- }
+  0% {
+    left: 78%;
+    bottom: 35%;
+  }
+
+  30% {
+    left: 72.5%;
+    bottom: 35%;
+  }
+
+  50% {
+    left: 62.5%;
+    bottom: 35%;
+  }
+
+  70% {
+    left: 57.75%;
+    bottom: 35%;
+  }
+
+  80% {
+    left: 53.75%;
+    bottom: 35%;
+  }
+
+  100% {
+    left: 53.75%;
+    bottom: 6%;
+  }
 }
 
 
 
 @keyframes MovePipetteToCylinder3 {
-  0%{
+  0% {
     left: 75%;
     top: 53.5%;
-     transform: skewY(0deg);
+    transform: skewY(0deg);
   }
-  30%{
+
+  30% {
     left: 72%;
     top: 53.5%;
-     transform: skewY(0deg);
+    transform: skewY(0deg);
   }
-50%{
-   left: 70%;
+
+  50% {
+    left: 70%;
     top: 53.5%;
-     transform: skewY(0deg);
-}
-  70%{
+    transform: skewY(0deg);
+  }
+
+  70% {
     left: 65%;
     top: 53.5%;
-     transform: skewY(0deg);
+    transform: skewY(0deg);
   }
-80%{
-  left: 56.25%;
+
+  80% {
+    left: 56.25%;
     top: 53.5%;
-     transform: skewY(0deg);
-}
-100%{
-   left: 56.25%;
+    transform: skewY(0deg);
+  }
+
+  100% {
+    left: 56.25%;
     top: 82.5%;
-     transform: skewY(0deg);
-}
+    transform: skewY(0deg);
+  }
 
 }
 
 
 @keyframes MoveDropWithDisk3 {
- 0%{
-  left: 78%;
-  bottom: 35%;
- }
- 30%{
-  left: 74.5%;
-  bottom: 35%;
- } 
- 50%{
-  left: 72.75%;
-  bottom: 35%;
- }
- 70%{
-  left: 67.75%;
-  bottom: 35%;
- }
- 80%{
-  left: 58.75%;
-  bottom: 35%;
- }
- 100%{
-   left: 58.75%;
-  bottom: 6%;
- }
+  0% {
+    left: 78%;
+    bottom: 35%;
+  }
+
+  30% {
+    left: 74.5%;
+    bottom: 35%;
+  }
+
+  50% {
+    left: 72.75%;
+    bottom: 35%;
+  }
+
+  70% {
+    left: 67.75%;
+    bottom: 35%;
+  }
+
+  80% {
+    left: 58.75%;
+    bottom: 35%;
+  }
+
+  100% {
+    left: 58.75%;
+    bottom: 6%;
+  }
 }
 
 
 
 
 @keyframes MovePipetteToCylinder4 {
-  0%{
-   left: 75%;
+  0% {
+    left: 75%;
     top: 53.5%;
-     transform: skewY(0deg);
+    transform: skewY(0deg);
   }
-  30%{
+
+  30% {
     left: 72%;
     top: 53.5%;
-     transform: skewY(0deg);
+    transform: skewY(0deg);
   }
-50%{
- left: 70%;
+
+  50% {
+    left: 70%;
     top: 53.5%;
-     transform: skewY(0deg);
-}
-  70%{
-   left: 68%;
-    top: 53.5%;
-     transform: skewY(0deg);
+    transform: skewY(0deg);
   }
-80%{
- left: 61.25%;
+
+  70% {
+    left: 68%;
     top: 53.5%;
-     transform: skewY(0deg);
-}
-100%{
-  left: 61.25%;
+    transform: skewY(0deg);
+  }
+
+  80% {
+    left: 61.25%;
+    top: 53.5%;
+    transform: skewY(0deg);
+  }
+
+  100% {
+    left: 61.25%;
     top: 82.5%;
-     transform: skewY(0deg);
-}
+    transform: skewY(0deg);
+  }
 
 }
 
 @keyframes MoveDropWithDisk4 {
- 0%{
-  left: 78%;
-  bottom: 35%;
- }
- 30%{
-  left: 74.5%;
-  bottom: 35%;
- } 
- 50%{
-  left: 72.5%;
-  bottom: 35%;
- }
- 70%{
-  left: 70.5%;
-  bottom: 35%;
- }
- 80%{
-  left: 63.75%;
-  bottom: 35%;
- }
- 100%{
-   left: 63.75%;
-  bottom: 6%;
- }
+  0% {
+    left: 78%;
+    bottom: 35%;
+  }
+
+  30% {
+    left: 74.5%;
+    bottom: 35%;
+  }
+
+  50% {
+    left: 72.5%;
+    bottom: 35%;
+  }
+
+  70% {
+    left: 70.5%;
+    bottom: 35%;
+  }
+
+  80% {
+    left: 63.75%;
+    bottom: 35%;
+  }
+
+  100% {
+    left: 63.75%;
+    bottom: 6%;
+  }
 }
 
 @keyframes MovePipetteToCylinder5 {
-  0%{
-  left: 75%;
+  0% {
+    left: 75%;
     top: 53.5%;
-     transform: skewY(0deg);
+    transform: skewY(0deg);
   }
-  30%{
-   left: 73%;
+
+  30% {
+    left: 73%;
     top: 53.5%;
-     transform: skewY(0deg);
+    transform: skewY(0deg);
   }
-50%{
-  left: 66.5%;
+
+  50% {
+    left: 66.5%;
     top: 53.5%;
-     transform: skewY(0deg);
-}
-100%{
-  left: 66.5%;
+    transform: skewY(0deg);
+  }
+
+  100% {
+    left: 66.5%;
     top: 82.5%;
-     transform: skewY(0deg);
-}
+    transform: skewY(0deg);
+  }
 
 }
 
 @keyframes MoveDropWithDisk5 {
- 0%{
-  left: 78%;
-  bottom: 35%;
- }
- 30%{
-  left: 75.5%;
-  bottom: 35%;
- } 
- 50%{
-  left: 69%;
-  bottom: 35%;
- }
-
- 100%{
-   left: 69%;
-  bottom: 6%;
- }
-}
-@keyframes MovePipetteToCylinder6 {
-  0%{
-   left: 75%;
-    top: 53.5%;
-     transform: skewY(0deg);
+  0% {
+    left: 78%;
+    bottom: 35%;
   }
-  30%{
+
+  30% {
+    left: 75.5%;
+    bottom: 35%;
+  }
+
+  50% {
+    left: 69%;
+    bottom: 35%;
+  }
+
+  100% {
+    left: 69%;
+    bottom: 6%;
+  }
+}
+
+@keyframes MovePipetteToCylinder6 {
+  0% {
+    left: 75%;
+    top: 53.5%;
+    transform: skewY(0deg);
+  }
+
+  30% {
     left: 72%;
     top: 53.5%;
-     transform: skewY(0deg);
+    transform: skewY(0deg);
   }
-50%{
- left: 71.25%;
+
+  50% {
+    left: 71.25%;
     top: 53.5%;
-     transform: skewY(0deg);
-}
-100%{
- left: 71.25%;
+    transform: skewY(0deg);
+  }
+
+  100% {
+    left: 71.25%;
     top: 82.5%;
-     transform: skewY(0deg);
-}
+    transform: skewY(0deg);
+  }
 
 }
 
 @keyframes MoveDropWithDisk6 {
- 0%{
-  left: 78%;
-  bottom: 35%;
- }
- 30%{
-  left: 74.5%;
-  bottom: 35%;
- } 
- 50%{
-  left: 73.75%;
-  bottom: 35%;
- }
-
- 100%{
-   left: 73.75%;
-  bottom: 6%;
- }
-}
-  .ovan{
-    position: absolute;
-    left: 9%;
-    bottom: 25%;
-    width: 15%;
-    object-fit: contain;
-    z-index: 3;
-    margin-bottom: -10px;
+  0% {
+    left: 78%;
+    bottom: 35%;
   }
-  #disk1,#disk2, #disk3, #disk4, #disk5, #disk6{
-    position: absolute;
-    cursor: pointer;
+
+  30% {
+    left: 74.5%;
+    bottom: 35%;
+  }
+
+  50% {
+    left: 73.75%;
+    bottom: 35%;
+  }
+
+  100% {
+    left: 73.75%;
     bottom: 6%;
-    left:50%;
-    transform: translateX(-50%);
-    width: 7.5%;
-    object-fit: contain;
-    z-index: 10;
-    margin-bottom: -10px;
+  }
+}
+
+.ovan {
+  position: absolute;
+  left: 9%;
+  bottom: 25%;
+  width: 15%;
+  object-fit: contain;
+  z-index: 3;
+  margin-bottom: -10px;
+}
+
+#disk1,
+#disk2,
+#disk3,
+#disk4,
+#disk5,
+#disk6 {
+  position: absolute;
+  cursor: pointer;
+  bottom: 6%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 7.5%;
+  object-fit: contain;
+  z-index: 10;
+  margin-bottom: -10px;
+}
+
+/* For Move From Flask to original Place */
+@keyframes Disk1 {
+  0% {
+    transform: skewY(0deg);
+    left: 46%;
   }
 
-  /* For Move From Flask to original Place */
-  @keyframes Disk1 {
-    0%{
-      transform: skewY(0deg);
-       left: 46%;
-    }
-    50%{
-      transform: skewY(0deg);
-      left: 46%;
+  50% {
+    transform: skewY(0deg);
+    left: 46%;
     top: 71%;
-    }
-    100%{
-      transform: skewY(0deg);
-      left: 46%;
+  }
+
+  100% {
+    transform: skewY(0deg);
+    left: 46%;
     top: 82.5%;
-    }
   }
-  #disk2{
-    left:55%;
+}
+
+#disk2 {
+  left: 55%;
+}
+
+/* For Move From Flask to original Place */
+@keyframes Disk2 {
+  0% {
+    transform: skewY(0deg);
+    left: 51.25%;
   }
-  /* For Move From Flask to original Place */
-  @keyframes Disk2 {
-    0%{
-      transform: skewY(0deg);
-       left: 51.25%;
-    }
-    50%{
-      transform: skewY(0deg);
+
+  50% {
+    transform: skewY(0deg);
     left: 51.25%;
     top: 71%;
-    }
-    100%{
-      transform: skewY(0deg);
-      left: 51.25%;
-      top: 82.5%;
-    }
   }
-  #disk3{
-    /* left: 75%; */
-    left: 60%;
 
+  100% {
+    transform: skewY(0deg);
+    left: 51.25%;
+    top: 82.5%;
   }
-  /* For Move From Flask to original Place */
-  @keyframes Disk3 {
-    0%{
-      transform: skewY(0deg);
-       left: 56.25%;
-    }
-    50%{
-      transform: skewY(0deg);
+}
+
+#disk3 {
+  /* left: 75%; */
+  left: 60%;
+
+}
+
+/* For Move From Flask to original Place */
+@keyframes Disk3 {
+  0% {
+    transform: skewY(0deg);
+    left: 56.25%;
+  }
+
+  50% {
+    transform: skewY(0deg);
     left: 56.25%;
     top: 64%;
-    }
-    100%{
-      transform: skewY(0deg);
-      left: 56.25%;
-      top: 82.5%;
-    }
   }
-  #disk4{
-    /* left: 60%; */
-    left: 65%;
+
+  100% {
+    transform: skewY(0deg);
+    left: 56.25%;
+    top: 82.5%;
   }
-  /* For Move From Flask to original Place */
-  @keyframes Disk4 {
-    0%{
-      transform: skewY(0deg);
-       left: 61.25%;
-    }
-    50%{
-      transform: skewY(0deg);
+}
+
+#disk4 {
+  /* left: 60%; */
+  left: 65%;
+}
+
+/* For Move From Flask to original Place */
+@keyframes Disk4 {
+  0% {
+    transform: skewY(0deg);
+    left: 61.25%;
+  }
+
+  50% {
+    transform: skewY(0deg);
     left: 61.25%;
     top: 64%;
-    }
-    100%{
-      transform: skewY(0deg);
-     left: 61.25%;
+  }
+
+  100% {
+    transform: skewY(0deg);
+    left: 61.25%;
     top: 82.5%;
-    }
   }
-  #disk5{
-    /* left: 65%; */
-    left: 70%;
+}
+
+#disk5 {
+  /* left: 65%; */
+  left: 70%;
+}
+
+/* For Move From Flask to original Place */
+@keyframes Disk5 {
+  0% {
+    transform: skewY(0deg);
+    left: 66.75%;
   }
-  /* For Move From Flask to original Place */
-  @keyframes Disk5 {
-    0%{
-      transform: skewY(0deg);
-       left: 66.75%;
-    }
-     50%{
-      transform: skewY(0deg);
+
+  50% {
+    transform: skewY(0deg);
     left: 66.75%;
     top: 64%;
-    }
-    100%{
-      transform: skewY(0deg);
-     left: 66.75%;
+  }
+
+  100% {
+    transform: skewY(0deg);
+    left: 66.75%;
     top: 82.5%;
-    }
   }
-  #disk6{
-    /* left: 70%; */
-    left: 76%;
+}
+
+#disk6 {
+  /* left: 70%; */
+  left: 76%;
+}
+
+/* For Move From Flask to original Place */
+@keyframes Disk6 {
+  0% {
+    transform: skewY(0deg);
+    left: 71.25%;
   }
-  /* For Move From Flask to original Place */
-  @keyframes Disk6 {
-    0%{
-      transform: skewY(0deg);
-       left: 71.25%;
-    }
-     50%{
-      transform: skewY(0deg);
+
+  50% {
+    transform: skewY(0deg);
     left: 71.25%;
     top: 64%;
-    }
-    100%{
-      transform: skewY(0deg);
-      left: 71.25%;
-      top: 82.5%;
-    }
   }
-  @keyframes Disk {
-    0% {}
-  
-  25% {
-      /* transform: translateZ(10px); */
-      /* left: 40%; */
-      top: 73%;
-  }
+
   100% {
-      /* transform: translateY(100px); */
-      left: 25%;
+    transform: skewY(0deg);
+    left: 71.25%;
+    top: 82.5%;
   }
+}
+
+@keyframes Disk {
+  0% {}
+
+  25% {
+    /* transform: translateZ(10px); */
+    /* left: 40%; */
+    top: 73%;
   }
-  
+
+  100% {
+    /* transform: translateY(100px); */
+    left: 25%;
+  }
+}
+
 @keyframes DiskToFlask {
-  0%{ 
+  0% {
     left: 25%;
     top: 71%;
   }
-  20%{
+
+  20% {
     left: 25%;
     top: 59%;
   }
-  60%{
-    left:30%;
-     top: 59%;
+
+  60% {
+    left: 30%;
+    top: 59%;
   }
-  80%{
-    left:40%;
-     top: 59%;
+
+  80% {
+    left: 40%;
+    top: 59%;
   }
-  100%{
-    left:44.5%;
-     top: 59%;
+
+  100% {
+    left: 44.5%;
+    top: 59%;
   }
 }
 
 @keyframes PowderToFlask {
-     
-   0%{ 
+
+  0% {
     left: 24%;
     top: 80%;
     z-index: 15;
   }
-  20%{
-   left: 24%;
+
+  20% {
+    left: 24%;
     z-index: 15;
     top: 68%;
   }
-  60%{
+
+  60% {
     left: 29%;
     z-index: 15;
     top: 68%;
   }
-  80%{
-   left: 39%;
+
+  80% {
+    left: 39%;
     z-index: 15;
     top: 68%;
   }
-  100%{
+
+  100% {
     left: 43.5%;
     top: 68%;
     z-index: 15;
-  } 
+  }
 }
+
 @keyframes DiskToOven1 {
-  0%{
-     left: 46.25%;
-      top: 82.5%;
-      transform: skewY(0deg);
+  0% {
+    left: 46.25%;
+    top: 82.5%;
+    transform: skewY(0deg);
   }
-  20%{
-     left: 46.25%;
-      top: 57.5%;
-      transform: skewY(0deg);
+
+  20% {
+    left: 46.25%;
+    top: 57.5%;
+    transform: skewY(0deg);
   }
-  50%{
+
+  50% {
     left: 40.25%;
-      top: 57.5%;
-      transform: skewY(0deg);
+    top: 57.5%;
+    transform: skewY(0deg);
   }
-  80%{
-     left: 31.25%;
-      top: 57.5%;
-      transform: skewY(0deg);
+
+  80% {
+    left: 31.25%;
+    top: 57.5%;
+    transform: skewY(0deg);
   }
-  100%{
+
+  100% {
     left: 15%;
-      top: 57.5%;
-      transform: skewY(0deg);
+    top: 57.5%;
+    transform: skewY(0deg);
   }
-  
+
 }
 
 
 @keyframes DiskToOven2 {
-  0%{
-     left: 51.25%;
-      top: 82.5%;
-      transform: skewY(0deg);
+  0% {
+    left: 51.25%;
+    top: 82.5%;
+    transform: skewY(0deg);
   }
-  20%{
-     left: 51.25%;
-      top: 57.5%;
-      transform: skewY(0deg);
+
+  20% {
+    left: 51.25%;
+    top: 57.5%;
+    transform: skewY(0deg);
   }
-  50%{
+
+  50% {
     left: 40.25%;
-      top: 57.5%;
-      transform: skewY(0deg);
+    top: 57.5%;
+    transform: skewY(0deg);
   }
-  80%{
-     left: 31.25%;
-      top: 57.5%;
-      transform: skewY(0deg);
+
+  80% {
+    left: 31.25%;
+    top: 57.5%;
+    transform: skewY(0deg);
   }
-  100%{
+
+  100% {
     left: 15%;
-      top: 57.5%;
-      transform: skewY(0deg);
+    top: 57.5%;
+    transform: skewY(0deg);
   }
-  
-}
-@keyframes DiskToOven3 {
-  0%{
-     left: 57.25%;
-      top: 82.5%;
-      transform: skewY(0deg);
-  }
-  20%{
-     left: 57.25%;
-      top: 57.5%;
-      transform: skewY(0deg);
-  }
-  50%{
-    left: 42.25%;
-      top: 57.5%;
-      transform: skewY(0deg);
-  }
-  80%{
-     left: 31.25%;
-      top: 57.5%;
-      transform: skewY(0deg);
-  }
-  100%{
-    left: 15%;
-      top: 57.5%;
-      transform: skewY(0deg);
-  }
-  
-}
-@keyframes DiskToOven4 {
-  0%{
-     left: 61.25%;
-      top: 82.5%;
-      transform: skewY(0deg);
-  }
-  20%{
-     left: 60.25%;
-      top: 57.5%;
-      transform: skewY(0deg);
-  }
-  50%{
-    left: 47.25%;
-      top: 57.5%;
-      transform: skewY(0deg);
-  }
-  80%{
-     left: 35.25%;
-      top: 57.5%;
-      transform: skewY(0deg);
-  }
-  100%{
-    left: 15%;
-      top: 57.5%;
-      transform: skewY(0deg);
-  }
-  
-}
-@keyframes DiskToOven5 {
-  0%{
-     left: 65.25%;
-      top: 82.5%;
-      transform: skewY(0deg);
-  }
-  20%{
-     left: 65.25%;
-      top: 57.5%;
-      transform: skewY(0deg);
-  }
-  50%{
-    left: 44.25%;
-      top: 57.5%;
-      transform: skewY(0deg);
-  }
-  80%{
-     left: 31.25%;
-      top: 57.5%;
-      transform: skewY(0deg);
-  }
-  100%{
-    left: 15%;
-      top: 57.5%;
-      transform: skewY(0deg);
-  }
-  
-}
-@keyframes DiskToOven6 {
-  0%{
-     left: 71.25%;
-      top: 82.5%;
-      transform: skewY(0deg);
-  }
-  20%{
-     left: 71.25%;
-      top: 57.5%;
-      transform: skewY(0deg);
-  }
-  50%{
-    left: 44.25%;
-      top: 57.5%;
-      transform: skewY(0deg);
-  }
-  80%{
-     left: 30.25%;
-      top: 57.5%;
-      transform: skewY(0deg);
-  }
-  100%{
-    left: 15%;
-      top: 57.5%;
-      transform: skewY(0deg);
-  }
-  
+
 }
 
-#powder1,#powder2,#powder3,#powder4,#powder5,#powder6{
-    width: 20px;
-    left: 17%;
-    position: absolute;
-    top: 65%;
-    z-index: 13;
-    opacity:0;
+@keyframes DiskToOven3 {
+  0% {
+    left: 57.25%;
+    top: 82.5%;
+    transform: skewY(0deg);
+  }
+
+  20% {
+    left: 57.25%;
+    top: 57.5%;
+    transform: skewY(0deg);
+  }
+
+  50% {
+    left: 42.25%;
+    top: 57.5%;
+    transform: skewY(0deg);
+  }
+
+  80% {
+    left: 31.25%;
+    top: 57.5%;
+    transform: skewY(0deg);
+  }
+
+  100% {
+    left: 15%;
+    top: 57.5%;
+    transform: skewY(0deg);
+  }
+
 }
+
+@keyframes DiskToOven4 {
+  0% {
+    left: 61.25%;
+    top: 82.5%;
+    transform: skewY(0deg);
+  }
+
+  20% {
+    left: 60.25%;
+    top: 57.5%;
+    transform: skewY(0deg);
+  }
+
+  50% {
+    left: 47.25%;
+    top: 57.5%;
+    transform: skewY(0deg);
+  }
+
+  80% {
+    left: 35.25%;
+    top: 57.5%;
+    transform: skewY(0deg);
+  }
+
+  100% {
+    left: 15%;
+    top: 57.5%;
+    transform: skewY(0deg);
+  }
+
+}
+
+@keyframes DiskToOven5 {
+  0% {
+    left: 65.25%;
+    top: 82.5%;
+    transform: skewY(0deg);
+  }
+
+  20% {
+    left: 65.25%;
+    top: 57.5%;
+    transform: skewY(0deg);
+  }
+
+  50% {
+    left: 44.25%;
+    top: 57.5%;
+    transform: skewY(0deg);
+  }
+
+  80% {
+    left: 31.25%;
+    top: 57.5%;
+    transform: skewY(0deg);
+  }
+
+  100% {
+    left: 15%;
+    top: 57.5%;
+    transform: skewY(0deg);
+  }
+
+}
+
+@keyframes DiskToOven6 {
+  0% {
+    left: 71.25%;
+    top: 82.5%;
+    transform: skewY(0deg);
+  }
+
+  20% {
+    left: 71.25%;
+    top: 57.5%;
+    transform: skewY(0deg);
+  }
+
+  50% {
+    left: 44.25%;
+    top: 57.5%;
+    transform: skewY(0deg);
+  }
+
+  80% {
+    left: 30.25%;
+    top: 57.5%;
+    transform: skewY(0deg);
+  }
+
+  100% {
+    left: 15%;
+    top: 57.5%;
+    transform: skewY(0deg);
+  }
+
+}
+
+#powder1,
+#powder2,
+#powder3,
+#powder4,
+#powder5,
+#powder6 {
+  width: 20px;
+  left: 17%;
+  position: absolute;
+  top: 65%;
+  z-index: 13;
+  opacity: 0;
+}
+
 @keyframes OvenToPowder1 {
-  0%{
+  0% {
     left: 17%;
-     top: 65%;
+    top: 65%;
   }
-  40%{
+
+  40% {
     left: 30%;
-     top: 65%;
+    top: 65%;
   }
-  60%{
+
+  60% {
     left: 40%;
-     top: 65%;
+    top: 65%;
   }
-  80%{
-     left: 48%;
-     top: 65%;
-  }
-  100%{
+
+  80% {
     left: 48%;
-     top: 91%;
+    top: 65%;
+  }
+
+  100% {
+    left: 48%;
+    top: 91%;
   }
 }
+
 @keyframes OvenToDisk1 {
-  0%{
+  0% {
     left: 14%;
-     top: 58%;
-      transform: skewY(0deg);
+    top: 58%;
+    transform: skewY(0deg);
   }
-  40%{
+
+  40% {
     left: 27%;
-     top: 58%;
-      transform: skewY(0deg);
+    top: 58%;
+    transform: skewY(0deg);
   }
-  60%{
+
+  60% {
     left: 37%;
-     top: 58%;
-      transform: skewY(0deg);
+    top: 58%;
+    transform: skewY(0deg);
   }
-  80%{
-     left: 48%;
-     top: 58%;
-      transform: skewY(0deg);
+
+  80% {
+    left: 48%;
+    top: 58%;
+    transform: skewY(0deg);
   }
-  100%{
+
+  100% {
     transform: skewY(0deg);
     left: 46%;
-     top: 82.5%;
+    top: 82.5%;
   }
 }
+
 @keyframes OvenToPowder2 {
-  0%{
+  0% {
     left: 17%;
-     top: 65%;
+    top: 65%;
   }
-  40%{
+
+  40% {
     left: 30%;
-     top: 65%;
+    top: 65%;
   }
-  60%{
+
+  60% {
     left: 40%;
-     top: 65%;
+    top: 65%;
   }
-  80%{
-     left: 54%;
-     top: 65%;
-  }
-  100%{
+
+  80% {
     left: 54%;
-     top: 91%;
+    top: 65%;
+  }
+
+  100% {
+    left: 54%;
+    top: 91%;
   }
 }
+
 @keyframes OvenToDisk2 {
-  0%{
+  0% {
     left: 14%;
-     top: 58%;
-      transform: skewY(0deg);
+    top: 58%;
+    transform: skewY(0deg);
   }
-  40%{
+
+  40% {
     left: 27%;
-     top: 58%;
-      transform: skewY(0deg);
+    top: 58%;
+    transform: skewY(0deg);
   }
-  60%{
+
+  60% {
     left: 37%;
-     top: 58%;
-      transform: skewY(0deg);
+    top: 58%;
+    transform: skewY(0deg);
   }
-  80%{
-     left: 52%;
-     top: 58%;
-      transform: skewY(0deg);
+
+  80% {
+    left: 52%;
+    top: 58%;
+    transform: skewY(0deg);
   }
-  100%{
+
+  100% {
     transform: skewY(0deg);
     left: 52%;
-     top: 82.5%;
+    top: 82.5%;
   }
 }
+
 @keyframes OvenToPowder3 {
-  0%{
+  0% {
     left: 17%;
-     top: 65%;
+    top: 65%;
   }
-  40%{
+
+  40% {
     left: 30%;
-     top: 65%;
+    top: 65%;
   }
-  60%{
+
+  60% {
     left: 40%;
-     top: 65%;
+    top: 65%;
   }
-  80%{
-     left: 59%;
-     top: 65%;
-  }
-  100%{
+
+  80% {
     left: 59%;
-     top: 91%;
+    top: 65%;
+  }
+
+  100% {
+    left: 59%;
+    top: 91%;
   }
 }
+
 @keyframes OvenToDisk3 {
-  0%{
+  0% {
     left: 14%;
-     top: 58%;
-      transform: skewY(0deg);
+    top: 58%;
+    transform: skewY(0deg);
   }
-  40%{
+
+  40% {
     left: 27%;
-     top: 58%;
-      transform: skewY(0deg);
+    top: 58%;
+    transform: skewY(0deg);
   }
-  60%{
+
+  60% {
     left: 37%;
-     top: 58%;
-      transform: skewY(0deg);
+    top: 58%;
+    transform: skewY(0deg);
   }
-  80%{
-     left: 57%;
-     top: 58%;
-      transform: skewY(0deg);
+
+  80% {
+    left: 57%;
+    top: 58%;
+    transform: skewY(0deg);
   }
-  100%{
+
+  100% {
     transform: skewY(0deg);
     left: 57%;
-     top: 82.5%;
+    top: 82.5%;
   }
 }
+
 @keyframes OvenToPowder4 {
-  0%{
+  0% {
     left: 17%;
-     top: 65%;
+    top: 65%;
   }
-  40%{
+
+  40% {
     left: 30%;
-     top: 65%;
+    top: 65%;
   }
-  60%{
+
+  60% {
     left: 40%;
-     top: 65%;
+    top: 65%;
   }
-  80%{
-     left: 64%;
-     top: 65%;
-  }
-  100%{
+
+  80% {
     left: 64%;
-     top: 91%;
+    top: 65%;
+  }
+
+  100% {
+    left: 64%;
+    top: 91%;
   }
 }
+
 @keyframes OvenToDisk4 {
-  0%{
+  0% {
     left: 14%;
-     top: 58%;
-      transform: skewY(0deg);
+    top: 58%;
+    transform: skewY(0deg);
   }
-  40%{
+
+  40% {
     left: 27%;
-     top: 58%;
-      transform: skewY(0deg);
+    top: 58%;
+    transform: skewY(0deg);
   }
-  60%{
+
+  60% {
     left: 37%;
-     top: 58%;
-      transform: skewY(0deg);
+    top: 58%;
+    transform: skewY(0deg);
   }
-  80%{
-     left: 62%;
-     top: 58%;
-      transform: skewY(0deg);
+
+  80% {
+    left: 62%;
+    top: 58%;
+    transform: skewY(0deg);
   }
-  100%{
+
+  100% {
     transform: skewY(0deg);
     left: 62%;
-     top: 82.5%;
+    top: 82.5%;
   }
 }
+
 @keyframes OvenToPowder5 {
-  0%{
+  0% {
     left: 17%;
-     top: 65%;
+    top: 65%;
   }
-  40%{
+
+  40% {
     left: 30%;
-     top: 65%;
+    top: 65%;
   }
-  60%{
+
+  60% {
     left: 40%;
-     top: 65%;
+    top: 65%;
   }
-  80%{
-     left: 69%;
-     top: 65%;
-  }
-  100%{
+
+  80% {
     left: 69%;
-     top: 91%;
+    top: 65%;
+  }
+
+  100% {
+    left: 69%;
+    top: 91%;
   }
 }
+
 @keyframes OvenToDisk5 {
-  0%{
+  0% {
     left: 14%;
-     top: 58%;
-      transform: skewY(0deg);
+    top: 58%;
+    transform: skewY(0deg);
   }
-  40%{
+
+  40% {
     left: 27%;
-     top: 58%;
-      transform: skewY(0deg);
+    top: 58%;
+    transform: skewY(0deg);
   }
-  60%{
+
+  60% {
     left: 37%;
-     top: 58%;
-      transform: skewY(0deg);
+    top: 58%;
+    transform: skewY(0deg);
   }
-  80%{
-     left: 67%;
-     top: 58%;
-      transform: skewY(0deg);
+
+  80% {
+    left: 67%;
+    top: 58%;
+    transform: skewY(0deg);
   }
-  100%{
+
+  100% {
     transform: skewY(0deg);
     left: 67%;
-     top: 82.5%;
+    top: 82.5%;
   }
 }
+
 @keyframes OvenToPowder6 {
-  0%{
+  0% {
     left: 17%;
-     top: 65%;
+    top: 65%;
   }
-  40%{
+
+  40% {
     left: 30%;
-     top: 65%;
+    top: 65%;
   }
-  60%{
+
+  60% {
     left: 42%;
-     top: 65%;
+    top: 65%;
   }
-  80%{
-     left: 75%;
-     top: 65%;
-  }
-  100%{
+
+  80% {
     left: 75%;
-     top: 91%;
+    top: 65%;
+  }
+
+  100% {
+    left: 75%;
+    top: 91%;
   }
 }
+
 @keyframes OvenToDisk6 {
-  0%{
+  0% {
     left: 14%;
-     top: 58%;
-      transform: skewY(0deg);
+    top: 58%;
+    transform: skewY(0deg);
   }
-  40%{
+
+  40% {
     left: 27%;
-     top: 58%;
-      transform: skewY(0deg);
+    top: 58%;
+    transform: skewY(0deg);
   }
-  60%{
+
+  60% {
     left: 39%;
-     top: 58%;
-      transform: skewY(0deg);
+    top: 58%;
+    transform: skewY(0deg);
   }
-  80%{
-     left: 72%;
-     top: 58%;
-      transform: skewY(0deg);
+
+  80% {
+    left: 72%;
+    top: 58%;
+    transform: skewY(0deg);
   }
-  100%{
+
+  100% {
     transform: skewY(0deg);
     left: 72%;
-     top: 82.5%;
+    top: 82.5%;
   }
 }
-  .powderBox{
-    display:grid;
-    width: 90px;
-    height: 25px;
-    position: absolute;
-    left: 24%;
-    bottom: 47%;
-    cursor: pointer;
-  }
-  #cap{
-    width: 60px;
-        left: 6%;
-    position: absolute;
-    z-index: 15;
-  }
-#box{
+
+.powderBox {
+  display: grid;
+  width: 90px;
+  height: 25px;
+  position: absolute;
+  left: 24%;
+  bottom: 47%;
+  cursor: pointer;
+}
+
+#cap {
+  width: 60px;
+  left: 6%;
+  position: absolute;
+  z-index: 15;
+}
+
+#box {
   width: 70px;
   z-index: 10;
 }
+
 @keyframes openCap {
-  0%{}
-  25%{
-    left:87%;
+  0% {}
+
+  25% {
+    left: 87%;
   }
-  50%{
-     left:87%;
-     top:160%;
+
+  50% {
+    left: 87%;
+    top: 160%;
   }
-  75%{
-    left:87%;
-    top:260%;
+
+  75% {
+    left: 87%;
+    top: 260%;
   }
-  100%{
-     left:87%;
-    top:300%;
+
+  100% {
+    left: 87%;
+    top: 300%;
   }
 }
-#spatula{
+
+#spatula {
   width: 100px;
   height: 45px;
   left: 27%;
-  top:62%;
-    position: absolute;
-    cursor: pointer;
-    
+  top: 62%;
+  position: absolute;
+  cursor: pointer;
+
 }
+
 @keyframes Spatula {
-  0%{}
-  10%{
-    top:31%;
+  0% {}
+
+  10% {
+    top: 31%;
   }
-  20%{
-     top:31%;
-    
+
+  20% {
+    top: 31%;
+
   }
-  30%{
-    left:25%;
-     top:32%;
-    
+
+  30% {
+    left: 25%;
+    top: 32%;
+
   }
-  40%{
-    left:25%;
-    top:45%;
+
+  40% {
+    left: 25%;
+    top: 45%;
   }
-  50%{
-    left:26%;
-    top:40%;
+
+  50% {
+    left: 26%;
+    top: 40%;
   }
-  70%{
-   left:28%;
-    top:79%;
-   
+
+  70% {
+    left: 28%;
+    top: 79%;
+
   }
-  100%{
-     z-index: 15;
+
+  100% {
+    z-index: 15;
     left: 24%;
     top: 65%;
   }
 }
-#powder{
-    width: 20px;
-    left: 26%;
-    position: absolute;
-    top: 53%;
-    z-index: -1;
+
+#powder {
+  width: 20px;
+  left: 26%;
+  position: absolute;
+  top: 53%;
+  z-index: -1;
 
 }
 
 @keyframes Powder {
-  0%{}
-  10%{
+  0% {}
+
+  10% {
     left: 26%;
-     top: 53%;
+    top: 53%;
   }
-  20%{
-left: 26%;
-     top: 53%;
-  }
-  30%{
-left: 26%;
-     top: 53%;
-  }
-  40%{
+
+  20% {
     left: 26%;
-     top: 53%;
-    }
-50%{
-    left:25%;
-    top:41%;
-}
+    top: 53%;
+  }
+
+  30% {
+    left: 26%;
+    top: 53%;
+  }
+
+  40% {
+    left: 26%;
+    top: 53%;
+  }
+
+  50% {
+    left: 25%;
+    top: 41%;
+  }
+
   /* 56%{
     left:26%;
     top:40%;
   } */
-  70%{
-    left:27%;
-    top:80%;
+  70% {
+    left: 27%;
+    top: 80%;
   }
-  100%{
+
+  100% {
     z-index: 15;
-    left:24%;
-    top:80%;
+    left: 24%;
+    top: 80%;
   }
 }
 
 @keyframes PowderIntoFlask {
-  0%{
+  0% {
     left: 43%;
     top: 66%;
     z-index: 6;
   }
-  100%{
+
+  100% {
     left: 44%;
     top: 93%;
     z-index: 6;
   }
 }
-#water{
+
+#water {
   cursor: pointer;
 }
+
 @keyframes WaterIntoFlask {
-  0%{
-    left:37%;
+  0% {
+    left: 37%;
     bottom: 1%;
   }
-  20%{
+
+  20% {
     bottom: 25%;
-    left:37%;
+    left: 37%;
   }
-  70%{
-     bottom: 25%;
-       left:38%;
+
+  70% {
+    bottom: 25%;
+    left: 38%;
   }
-  100%{
+
+  100% {
     bottom: 20%;
     left: 39.5%;
     transform: rotate(-35deg);
   }
 }
+
 @keyframes WaterToPlace {
-  0%{
+  0% {
     bottom: 20%;
     left: 44%;
     transform: rotate(-35deg);
   }
-  20%{
+
+  20% {
     bottom: 25%;
-       left:38%;
+    left: 38%;
     transform: rotate(35deg);
   }
-  70%{
-     bottom: 25%;
-    left:37%;
-    
+
+  70% {
+    bottom: 25%;
+    left: 37%;
+
   }
-  100%{
-    left:37%;
+
+  100% {
+    left: 37%;
     bottom: 1%;
   }
 }
-#drop
-{
-    width: 7px;
-    position: absolute;
-    bottom: 23%;
-    left: 43.85%;
-    /* z-index: -1; */
+
+#drop {
+  width: 7px;
+  position: absolute;
+  bottom: 23%;
+  left: 43.85%;
+  /* z-index: -1; */
 }
+
 @keyframes DropIntoFlask {
-  0%{
+  0% {
     bottom: 23%;
     left: 43.85%;
     z-index: 1;
   }
-  50%{
-     bottom: 19%;
+
+  50% {
+    bottom: 19%;
     left: 43.85%;
     z-index: 1;
   }
-  100%{
+
+  100% {
     bottom: 15%;
     left: 43.85%;
     z-index: 1;
@@ -1599,17 +1948,19 @@ left: 26%;
 }
 
 @keyframes DropIntoDisk1 {
-  0%{
-   left: 79%;
+  0% {
+    left: 79%;
     top: 60%;
     z-index: 7;
   }
-  50%{
-   left: 79%;
+
+  50% {
+    left: 79%;
     top: 61%;
     z-index: 7;
   }
-  100%{
+
+  100% {
     left: 79%;
     top: 62%;
     z-index: 7;
@@ -1617,90 +1968,105 @@ left: 26%;
 }
 
 @keyframes DropIntoDisk2 {
-  0%{
-   left: 79%;
+  0% {
+    left: 79%;
     top: 60%;
     z-index: 7;
   }
-  50%{
-   left: 79%;
+
+  50% {
+    left: 79%;
     top: 61%;
     z-index: 7;
   }
-  100%{
+
+  100% {
     left: 79%;
     top: 62%;
     z-index: 7;
   }
 }
+
 @keyframes DropIntoDisk3 {
-  0%{
-   left: 79%;
+  0% {
+    left: 79%;
     top: 60%;
     z-index: 7;
   }
-  50%{
-   left: 79%;
+
+  50% {
+    left: 79%;
     top: 61%;
     z-index: 7;
   }
-  100%{
+
+  100% {
     left: 79%;
     top: 62%;
     z-index: 7;
   }
 }
+
 @keyframes DropIntoDisk4 {
-  0%{
-   left: 79%;
+  0% {
+    left: 79%;
     top: 60%;
     z-index: 7;
   }
-  50%{
-   left: 79%;
+
+  50% {
+    left: 79%;
     top: 61%;
     z-index: 7;
   }
-  100%{
+
+  100% {
     left: 79%;
     top: 62%;
     z-index: 7;
   }
 }
+
 @keyframes DropIntoDisk5 {
-  0%{
-   left: 79%;
+  0% {
+    left: 79%;
     top: 60%;
     z-index: 7;
   }
-  50%{
-   left: 79%;
+
+  50% {
+    left: 79%;
     top: 61%;
     z-index: 7;
   }
-  100%{
+
+  100% {
     left: 79%;
     top: 62%;
     z-index: 7;
   }
 }
+
 @keyframes DropIntoDisk6 {
-  0%{
-   left: 79%;
+  0% {
+    left: 79%;
     top: 60%;
     z-index: 7;
   }
-  50%{
-   left: 79%;
+
+  50% {
+    left: 79%;
     top: 61%;
     z-index: 7;
   }
-  100%{
+
+  100% {
     left: 79%;
     top: 62%;
     z-index: 7;
   }
 }
+
 /* @keyframes DropIntoDisk2 {
   0%{
     bottom: 19%;
@@ -1787,1063 +2153,1269 @@ left: 26%;
   }
 } */
 @keyframes DropToOven1 {
-  0%{
-     left: 49.15%;
-     bottom: 6%;
-     
-  }
-  20%{
-     left: 48.5%;
-      bottom: 32%;
-      
-  }
-  50%{
-    left: 43%;
-      bottom:  32%;
-      
-  }
-  80%{
-     left: 34.15%;
-      bottom: 32%;
-      
-  }
-  100%{
-    left: 18.15%;
-     bottom: 32%;
-     
-  }
-  
-}
-@keyframes DropToOven2 {
-  0%{
-     left: 54.15%;
-     bottom: 6%;
-     
-  }
-  20%{
-     left: 54.15%;
-      bottom: 32%;
-      
-  }
-  50%{
-    left: 43%;
-      bottom:  32%;
-      
-  }
-  80%{
-     left: 34.15%;
-      bottom: 32%;
-      
-  }
-  100%{
-    left: 18.15%;
-     bottom: 32%;
-     
-  }
-  
-}
-@keyframes DropToOven3 {
-  0%{
-     left: 59.15%;
-     bottom: 6%;
-     
-  }
-  20%{
-     left: 59.25%;
-      bottom: 32%;
-      
-  }
-  50%{
-    left: 45%;
-      bottom:  32%;
-      
-  }
-  80%{
-     left: 34.15%;
-      bottom: 32%;
-      
-  }
-  100%{
-    left: 18.15%;
-     bottom: 32%;
-     
-  }
-  
-}
-@keyframes DropToOven4 {
-  0%{
-     left: 64.15%;
-     bottom: 6%;
-     
-  }
-  20%{
-     left: 63.25%;
-      bottom: 32%;
-      
-  }
-  50%{
-    left: 50%;
-      bottom:  32%;
-      
-  }
-  80%{
-     left: 38.15%;
-      bottom: 32%;
-      
-  }
-  100%{
-    left: 18.15%;
-     bottom: 32%;
-     
-  }
-  
-}
-@keyframes DropToOven5 {
-  0%{
-     left: 69.15%;
-     bottom: 6%;
-     
-  }
-  20%{
-     left: 68.15%;
-      bottom: 32%;
-      
-  }
-  50%{
-    left: 47%;
-      bottom:  32%;
-      
-  }
-  80%{
-     left: 34.15%;
-      bottom: 32%;
-      
-  }
-  100%{
-    left: 18.15%;
-     bottom: 32%;
-     
-  }
-  
-}
-@keyframes DropToOven6 {
-  0%{
-     left: 74.15%;
-     bottom: 6%;
-     
-  }
-  20%{
-     left: 74.15%;
-      bottom: 32%;
-      
-  }
-  50%{
-    left: 47%;
-      bottom:  32%;
-      
-  }
-  80%{
-     left: 33.15%;
-      bottom: 32%;
-      
-  }
-  100%{
-    left: 18.15%;
-     bottom: 32%;
-     
-  }
-  
-}
-#drop1{
-  opacity: 0;
-    width: 19px;
-    left: 78.5%;
-    position: absolute;
-    bottom: 35%;
-    z-index: 15;
-}
-#drop2{
-  opacity: 0;
-    width: 19px;
-    left: 78.5%;
-    position: absolute;
-    bottom: 35%;
-    z-index: 15;
-}
-#drop3{
- opacity: 0;
-    width: 19px;
-    left: 78.5%;
-    position: absolute;
-    bottom: 35%;
-    z-index: 15;
-}
-#drop4{
- opacity: 0;
-    width: 19px;
-    left: 64.15%;
-    position: absolute;
+  0% {
+    left: 49.15%;
     bottom: 6%;
-    z-index: 15;
+
+  }
+
+  20% {
+    left: 48.5%;
+    bottom: 32%;
+
+  }
+
+  50% {
+    left: 43%;
+    bottom: 32%;
+
+  }
+
+  80% {
+    left: 34.15%;
+    bottom: 32%;
+
+  }
+
+  100% {
+    left: 18.15%;
+    bottom: 32%;
+
+  }
+
 }
-#drop5{
- opacity: 0;
-    width: 19px;
-    left: 78.5%;
-    position: absolute;
-    bottom: 35%;
-    z-index: 15;
+
+@keyframes DropToOven2 {
+  0% {
+    left: 54.15%;
+    bottom: 6%;
+
+  }
+
+  20% {
+    left: 54.15%;
+    bottom: 32%;
+
+  }
+
+  50% {
+    left: 43%;
+    bottom: 32%;
+
+  }
+
+  80% {
+    left: 34.15%;
+    bottom: 32%;
+
+  }
+
+  100% {
+    left: 18.15%;
+    bottom: 32%;
+
+  }
+
 }
-#drop6{
- opacity: 0;
-    width: 19px;
-    left: 78.5%;
-    position: absolute;
-    bottom: 35%;
-    z-index: 15;
+
+@keyframes DropToOven3 {
+  0% {
+    left: 59.15%;
+    bottom: 6%;
+
+  }
+
+  20% {
+    left: 59.25%;
+    bottom: 32%;
+
+  }
+
+  50% {
+    left: 45%;
+    bottom: 32%;
+
+  }
+
+  80% {
+    left: 34.15%;
+    bottom: 32%;
+
+  }
+
+  100% {
+    left: 18.15%;
+    bottom: 32%;
+
+  }
+
 }
-#flask{
+
+@keyframes DropToOven4 {
+  0% {
+    left: 64.15%;
+    bottom: 6%;
+
+  }
+
+  20% {
+    left: 63.25%;
+    bottom: 32%;
+
+  }
+
+  50% {
+    left: 50%;
+    bottom: 32%;
+
+  }
+
+  80% {
+    left: 38.15%;
+    bottom: 32%;
+
+  }
+
+  100% {
+    left: 18.15%;
+    bottom: 32%;
+
+  }
+
+}
+
+@keyframes DropToOven5 {
+  0% {
+    left: 69.15%;
+    bottom: 6%;
+
+  }
+
+  20% {
+    left: 68.15%;
+    bottom: 32%;
+
+  }
+
+  50% {
+    left: 47%;
+    bottom: 32%;
+
+  }
+
+  80% {
+    left: 34.15%;
+    bottom: 32%;
+
+  }
+
+  100% {
+    left: 18.15%;
+    bottom: 32%;
+
+  }
+
+}
+
+@keyframes DropToOven6 {
+  0% {
+    left: 74.15%;
+    bottom: 6%;
+
+  }
+
+  20% {
+    left: 74.15%;
+    bottom: 32%;
+
+  }
+
+  50% {
+    left: 47%;
+    bottom: 32%;
+
+  }
+
+  80% {
+    left: 33.15%;
+    bottom: 32%;
+
+  }
+
+  100% {
+    left: 18.15%;
+    bottom: 32%;
+
+  }
+
+}
+
+#drop1 {
+  opacity: 0;
+  width: 19px;
+  left: 78.5%;
+  position: absolute;
+  bottom: 35%;
+  z-index: 15;
+}
+
+#drop2 {
+  opacity: 0;
+  width: 19px;
+  left: 78.5%;
+  position: absolute;
+  bottom: 35%;
+  z-index: 15;
+}
+
+#drop3 {
+  opacity: 0;
+  width: 19px;
+  left: 78.5%;
+  position: absolute;
+  bottom: 35%;
+  z-index: 15;
+}
+
+#drop4 {
+  opacity: 0;
+  width: 19px;
+  left: 64.15%;
+  position: absolute;
+  bottom: 6%;
+  z-index: 15;
+}
+
+#drop5 {
+  opacity: 0;
+  width: 19px;
+  left: 78.5%;
+  position: absolute;
+  bottom: 35%;
+  z-index: 15;
+}
+
+#drop6 {
+  opacity: 0;
+  width: 19px;
+  left: 78.5%;
+  position: absolute;
+  bottom: 35%;
+  z-index: 15;
+}
+
+#flask {
   cursor: pointer;
 }
+
 @keyframes MoveFlask {
-  0%{
+  0% {
     left: 41%;
     transform: rotate(0deg);
   }
-  50%{
+
+  50% {
     left: 41%;
     transform: rotate(35deg);
   }
-  100%{
-    left: 41%;
-     transform: rotate(0deg);
-  }
-}
-@keyframes MoveWater{
-  0%{
+
+  100% {
     left: 41%;
     transform: rotate(0deg);
   }
-  50%{
+}
+
+@keyframes MoveWater {
+  0% {
+    left: 41%;
+    transform: rotate(0deg);
+  }
+
+  50% {
     top: 82%;
     left: 40.5%;
     transform: rotate(35deg);
   }
-  100%{
+
+  100% {
     left: 41%;
     top: 84%;
-     transform: rotate(0deg);
+    transform: rotate(0deg);
   }
 }
+
 @keyframes MovePowderIntoFlask {
-  0%{
+  0% {
     left: 41%;
     top: 91%;
     transform: rotate(0deg);
   }
-  50%{
+
+  50% {
     left: 41%;
     top: 91%;
     transform: rotate(35deg);
   }
-  100%{
+
+  100% {
     left: 41%;
     top: 91%;
-     transform: rotate(0deg);
+    transform: rotate(0deg);
   }
 }
+
 /* Move Flask To the cylinder */
-@keyframes MoveToCylinder { 
-  0%{
+@keyframes MoveToCylinder {
+  0% {
     left: 45%;
   }
-  20%{
-     left: 45%;
-     bottom: 35%;
+
+  20% {
+    left: 45%;
+    bottom: 35%;
   }
-  50%{
+
+  50% {
     left: 60%;
     bottom: 37%;
   }
-  100%{
-   left: 72%;
+
+  100% {
+    left: 72%;
     bottom: 37%;
     transform: rotate(100deg);
   }
 }
-#WaterInFlask{
-        width: 74px;
-    position: absolute;
-    top: 84%;
-    left: 41.6%;
-    opacity: 0;
-  }
+
+#WaterInFlask {
+  width: 74px;
+  position: absolute;
+  top: 84%;
+  left: 41.6%;
+  opacity: 0;
+}
+
 @keyframes WaterWithFlask {
-  0%{
+  0% {
     top: 84%;
     left: 41.6%;
   }
-  20%{
-     top: 50%;
+
+  20% {
+    top: 50%;
     left: 41.6%;
   }
-  50%{
+
+  50% {
     /* top: 50%;
     left: 56.6%; */
 
     top: 44.5%;
     left: 57%;
   }
-  100%{
-        top: 40.5%;
+
+  100% {
+    top: 40.5%;
     left: 71.5%;
     transform: rotate(100deg);
   }
 }
-@keyframes  DropMoveToCylinder{
-  0%{
+
+@keyframes DropMoveToCylinder {
+  0% {
     bottom: 45%;
     left: 81.3%;
     /* z-index: 1; */
   }
-  50%{
-     bottom: 43%;
+
+  50% {
+    bottom: 43%;
     left: 81.3%;
     /* z-index: 1; */
   }
-  90%{
+
+  90% {
     bottom: 41%;
     left: 81.3%;
     /* z-index: 1; */
   }
-  100%{
+
+  100% {
     bottom: 40%;
     left: 81.3%;
     /* z-index: 1; */
   }
 }
+
 @keyframes MoveDropIntoFlask {
-  0%{
+  0% {
     bottom: 48%;
     left: 75.5%;
     z-index: 20;
   }
-  50%{
-     bottom: 47%;
+
+  50% {
+    bottom: 47%;
     left: 75.5%;
     z-index: 20;
   }
-  100%{
+
+  100% {
     bottom: 45%;
     left: 75.5%;
     z-index: 20;
   }
 }
+
 @keyframes FlaskToPlace {
-  
-0%{
+
+  0% {
     left: 72%;
     bottom: 37%;
     transform: rotate(-100deg);
   }
-  20%{
-     left: 60%;
+
+  20% {
+    left: 60%;
     bottom: 35%;
   }
-  50%{
-     left: 41%;
-     bottom: 35%;
+
+  50% {
+    left: 41%;
+    bottom: 35%;
   }
-  100%{
+
+  100% {
     left: 44%;
   }
 
 }
+
 .ChemicalWater {
   opacity: 0;
 }
-#chemicalWater1{
-    width: 43px;
-    left: 12.25%;
-    position: relative;
-    bottom: -23%;
-    z-index: 2;
+
+#chemicalWater1 {
+  width: 43px;
+  left: 12.25%;
+  position: relative;
+  bottom: -23%;
+  z-index: 2;
 
 }
-#chemicalWater2{
-    width: 43px;
-    left: 12.25%;
-    position: relative;
-    bottom: -19%;
+
+#chemicalWater2 {
+  width: 43px;
+  left: 12.25%;
+  position: relative;
+  bottom: -19%;
 }
-#chemicalWater3{
-    width: 43px;
-    left: 12.25%;
-    position: relative;
-    bottom: -15%;
+
+#chemicalWater3 {
+  width: 43px;
+  left: 12.25%;
+  position: relative;
+  bottom: -15%;
 }
-#chemicalWater4{
-    width: 43px;
-    left: 12.25%;
-    position: relative;
-    bottom: -11%;
+
+#chemicalWater4 {
+  width: 43px;
+  left: 12.25%;
+  position: relative;
+  bottom: -11%;
 }
-#chemicalWater5{
-    width: 43px;
-    left: 12.25%;
-    position: relative;
-    bottom: -7%;
+
+#chemicalWater5 {
+  width: 43px;
+  left: 12.25%;
+  position: relative;
+  bottom: -7%;
 }
-#chemicalWater6{
-    width: 43px;
-    left: 12.25%;
-    position: relative;
-    bottom: -3%;
+
+#chemicalWater6 {
+  width: 43px;
+  left: 12.25%;
+  position: relative;
+  bottom: -3%;
 }
-#chemicalWater7{
-    width: 43px;
-    left: 12.25%;
-    position: relative;
-    bottom: 1%;
+
+#chemicalWater7 {
+  width: 43px;
+  left: 12.25%;
+  position: relative;
+  bottom: 1%;
 
 }
-#chemicalWater8{
-    width: 43px;
-    left: 12.25%;
-    position: relative;
-    bottom: 5%;
+
+#chemicalWater8 {
+  width: 43px;
+  left: 12.25%;
+  position: relative;
+  bottom: 5%;
 }
-#chemicalWater9{
-    width: 43px;
-    left: 12.25%;
-    position: relative;
-    bottom: 9%;
+
+#chemicalWater9 {
+  width: 43px;
+  left: 12.25%;
+  position: relative;
+  bottom: 9%;
 }
-#chemicalWater10{
-    width: 43px;
-    left: 12.25%;
-    position: relative;
-    bottom: 13%;
+
+#chemicalWater10 {
+  width: 43px;
+  left: 12.25%;
+  position: relative;
+  bottom: 13%;
 }
-#chemicalWater11{
-    width: 43px;
-    left: 12.25%;
-    position: relative;
-    bottom: 17%;
+
+#chemicalWater11 {
+  width: 43px;
+  left: 12.25%;
+  position: relative;
+  bottom: 17%;
 }
-#chemicalWater12{
-    width: 43px;
-    left: 12.25%;
-    position: relative;
-    bottom: 21%;
+
+#chemicalWater12 {
+  width: 43px;
+  left: 12.25%;
+  position: relative;
+  bottom: 21%;
 }
+
 @keyframes SampleDiskToWeighing {
   0% {
     /* left: 46%; */
     top: 82.5%;
   }
-  
+
   25% {
-      /* transform: translateZ(10px); */
-      left: 46%;
-      top: 73%;
+    /* transform: translateZ(10px); */
+    left: 46%;
+    top: 73%;
   }
+
   45% {
-      /* transform: translateZ(10px); */
-      left: 36%;
-      top: 73%;
+    /* transform: translateZ(10px); */
+    left: 36%;
+    top: 73%;
   }
+
   100% {
-      left: 22%;
-      top: 74.5%;
+    left: 22%;
+    top: 74.5%;
   }
 }
+
 @keyframes SamplePowderToWeighing {
   0% {
     /* left: 48%; */
     top: 91%;
   }
-  25%{
-  left: 48%;
+
+  25% {
+    left: 48%;
     top: 81.5%;
   }
+
   45% {
-      /* transform: translateZ(10px); */
-      left: 38%;
-      top: 81.5%;
+    /* transform: translateZ(10px); */
+    left: 38%;
+    top: 81.5%;
   }
+
   100% {
-      left: 25%;
-      top: 82.5%;
+    left: 25%;
+    top: 82.5%;
   }
 }
+
 @keyframes WeighingToDisk1 {
-  0%{
-     left: 22%;
-      top: 74.5%;
-  }
-  20%{
+  0% {
     left: 22%;
-      top: 73%;
+    top: 74.5%;
   }
-  30%{
-     left: 36%;
-      top: 73%;
+
+  20% {
+    left: 22%;
+    top: 73%;
   }
-  45%{
-     left: 46%;
-      top: 73%;
+
+  30% {
+    left: 36%;
+    top: 73%;
   }
-  100%{
-    left:46%;
-     top: 82.5%;
+
+  45% {
+    left: 46%;
+    top: 73%;
+  }
+
+  100% {
+    left: 46%;
+    top: 82.5%;
   }
 }
+
 @keyframes WeighingToPowder1 {
-  0%{
+  0% {
     left: 25%;
-      top: 82.5%;
+    top: 82.5%;
   }
-  20%{
+
+  20% {
     left: 25%;
     top: 81.5%;
   }
-  30%{
+
+  30% {
     left: 38%;
-      top: 81.5%;
+    top: 81.5%;
   }
-  45%{
+
+  45% {
     left: 48%;
     top: 81.5%;
   }
-  100%{
+
+  100% {
     top: 91%;
     left: 48%;
   }
 }
+
 @keyframes WeighingToDisk2 {
-  0%{
-     left: 22%;
-      top: 74.5%;
-  }
-  20%{
+  0% {
     left: 22%;
-      top: 73%;
+    top: 74.5%;
   }
-  30%{
-     left: 36%;
-      top: 73%;
+
+  20% {
+    left: 22%;
+    top: 73%;
   }
-  45%{
-     left: 51.5%;
-      top: 73%;
+
+  30% {
+    left: 36%;
+    top: 73%;
   }
-  100%{
-    left:51.5%;
-     top: 82.5%;
+
+  45% {
+    left: 51.5%;
+    top: 73%;
+  }
+
+  100% {
+    left: 51.5%;
+    top: 82.5%;
   }
 }
+
 @keyframes WeighingToPowder2 {
-  0%{
+  0% {
     left: 25%;
-      top: 82.5%;
+    top: 82.5%;
   }
-  20%{
+
+  20% {
     left: 25%;
     top: 81.5%;
   }
-  30%{
+
+  30% {
     left: 38%;
-      top: 81.5%;
+    top: 81.5%;
   }
-  45%{
+
+  45% {
     left: 53.5%;
     top: 81.5%;
   }
-  100%{
+
+  100% {
     top: 91%;
     left: 53.5%;
   }
 }
+
 @keyframes WeighingToDisk3 {
-  0%{
-     left: 22%;
-      top: 74.5%;
-  }
-  20%{
+  0% {
     left: 22%;
-      top: 73%;
+    top: 74.5%;
   }
-  30%{
-     left: 36%;
-      top: 73%;
+
+  20% {
+    left: 22%;
+    top: 73%;
   }
-  45%{
-     left: 57%;
-      top: 73%;
+
+  30% {
+    left: 36%;
+    top: 73%;
   }
-  100%{
-    left:57%;
-     top: 82.5%;
+
+  45% {
+    left: 57%;
+    top: 73%;
+  }
+
+  100% {
+    left: 57%;
+    top: 82.5%;
   }
 }
+
 @keyframes WeighingToPowder3 {
-  0%{
+  0% {
     left: 25%;
-      top: 82.5%;
+    top: 82.5%;
   }
-  20%{
+
+  20% {
     left: 25%;
     top: 81.5%;
   }
-  30%{
+
+  30% {
     left: 38%;
-      top: 81.5%;
+    top: 81.5%;
   }
-  45%{
+
+  45% {
     left: 59%;
     top: 81.5%;
   }
-  100%{
+
+  100% {
     top: 91%;
     left: 59%;
   }
 }
+
 @keyframes WeighingToDisk4 {
-  0%{
-     left: 22%;
-      top: 74.5%;
-  }
-  20%{
+  0% {
     left: 22%;
-      top: 73%;
+    top: 74.5%;
   }
-  30%{
-     left: 36%;
-      top: 73%;
+
+  20% {
+    left: 22%;
+    top: 73%;
   }
-  45%{
-     left: 62%;
-      top: 73%;
+
+  30% {
+    left: 36%;
+    top: 73%;
   }
-  100%{
-    left:62%;
-     top: 82.5%;
+
+  45% {
+    left: 62%;
+    top: 73%;
+  }
+
+  100% {
+    left: 62%;
+    top: 82.5%;
   }
 }
+
 @keyframes WeighingToPowder4 {
-  0%{
+  0% {
     left: 25%;
-      top: 82.5%;
+    top: 82.5%;
   }
-  20%{
+
+  20% {
     left: 25%;
     top: 81.5%;
   }
-  30%{
+
+  30% {
     left: 38%;
-      top: 81.5%;
+    top: 81.5%;
   }
-  45%{
+
+  45% {
     left: 64%;
     top: 81.5%;
   }
-  100%{
+
+  100% {
     left: 64%;
     top: 91%;
   }
 }
+
 @keyframes WeighingToDisk5 {
-  0%{
-     left: 22%;
-      top: 74.5%;
-  }
-  20%{
+  0% {
     left: 22%;
-      top: 73%;
+    top: 74.5%;
   }
-  30%{
-     left: 36%;
-      top: 73%;
+
+  20% {
+    left: 22%;
+    top: 73%;
   }
-  45%{
-     left: 67%;
-      top: 73%;
+
+  30% {
+    left: 36%;
+    top: 73%;
   }
-  100%{
-    left:67%;
-     top: 82.5%;
+
+  45% {
+    left: 67%;
+    top: 73%;
+  }
+
+  100% {
+    left: 67%;
+    top: 82.5%;
   }
 }
+
 @keyframes WeighingToPowder5 {
-  0%{
+  0% {
     left: 25%;
-      top: 82.5%;
+    top: 82.5%;
   }
-  20%{
+
+  20% {
     left: 25%;
     top: 81.5%;
   }
-  30%{
+
+  30% {
     left: 38%;
-      top: 81.5%;
+    top: 81.5%;
   }
-  45%{
+
+  45% {
     left: 69%;
     top: 81.5%;
   }
-  100%{
+
+  100% {
     top: 91%;
     left: 69%;
   }
 }
+
 @keyframes WeighingToDisk6 {
-  0%{
-     left: 22%;
-      top: 74.5%;
-  }
-  20%{
+  0% {
     left: 22%;
-      top: 73%;
+    top: 74.5%;
   }
-  30%{
-     left: 36%;
-      top: 73%;
+
+  20% {
+    left: 22%;
+    top: 73%;
   }
-  45%{
-     left: 73%;
-      top: 73%;
+
+  30% {
+    left: 36%;
+    top: 73%;
   }
-  100%{
-    left:73%;
-     top: 82.5%;
+
+  45% {
+    left: 73%;
+    top: 73%;
+  }
+
+  100% {
+    left: 73%;
+    top: 82.5%;
   }
 }
+
 @keyframes WeighingToPowder6 {
-  0%{
+  0% {
     left: 25%;
-      top: 82.5%;
+    top: 82.5%;
   }
-  20%{
+
+  20% {
     left: 25%;
     top: 81.5%;
   }
-  30%{
+
+  30% {
     left: 38%;
-      top: 81.5%;
+    top: 81.5%;
   }
-  45%{
+
+  45% {
     left: 75%;
     top: 81.5%;
   }
-  100%{
+
+  100% {
     top: 91%;
     left: 75%;
   }
 }
-#TableHeading{
-      color: #000000;
-    left: 1%;
-    position: absolute;
-    width: 403px;
-    border: 3px solid;
-    background-color: gainsboro;
-    border-top-right-radius: 12px;
+
+#TableHeading {
+  color: #000000;
+  left: 1%;
+  position: absolute;
+  width: 403px;
+  border: 3px solid;
+  background-color: gainsboro;
+  border-top-right-radius: 12px;
   border-top-left-radius: 12px;
-    top: 6.05%;
-    opacity: 0;
+  top: 6.05%;
+  opacity: 0;
 }
-#resultsTable{
+
+#resultsTable {
   background-color: white;
-    left: 1%;
-    position: absolute;
-    z-index: 20;
-    top: 15%;
-    opacity: 0;
+  left: 1%;
+  position: absolute;
+  z-index: 20;
+  top: 15%;
+  opacity: 0;
 }
+
 /* #resultsTable>th{
   border: 1px solid black;
 } */
- table{
+table {
   border-spacing: 0;
 
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
   text-align: center;
   color: #000000;
- }
-  th, td {
-    border: 1px solid black;
-    /* border-collapse: collapse; */
-    
-  }
-   th, td {
-    padding: 8px;
-    text-align: center;
+}
+
+th,
+td {
+  border: 1px solid black;
+  /* border-collapse: collapse; */
+
+}
+
+th,
+td {
+  padding: 8px;
+  text-align: center;
+}
+
+tr:last-child td:first-child {
+  border-bottom-left-radius: 12px;
+}
+
+tr:last-child td:last-child {
+  border-bottom-right-radius: 12px;
+}
+
+#displayTable {
+  cursor: pointer;
+  border-radius: 5px;
+  width: 165px;
+  height: 30px;
+  background-color: rgb(16, 190, 115);
+  color: white;
+  display: flex;
+  position: absolute;
+  top: 45%;
+  left: 44%;
+  z-index: 20;
+  font-size: 25px;
+  text-align: center;
+  padding-left: 12px;
+  font-weight: bolder;
+  opacity: 0;
+}
+
+.particles {
+  position: relative;
+  bottom: 15%;
+  left: 80%;
+  display: none;
+  transform: translateX(-50%);
+  width: 3em;
+  height: 7em;
+  object-fit: contain;
+  background-size: contain;
+  z-index: 6;
+  mix-blend-mode: color-dodge;
+}
+
+.sample1 {
+  position: absolute;
+  bottom: 32%;
+  left: 5%;
+  transform: translateX(-50%);
+  width: 4em;
+  height: auto;
+  object-fit: cover;
+  background-size: contain;
+}
+
+.sample2 {
+  position: absolute;
+  bottom: 32%;
+  left: 8%;
+  transform: translateX(-50%);
+  width: 4em;
+  height: auto;
+  object-fit: cover;
+  background-size: contain;
+}
+
+.sample3 {
+  position: absolute;
+  bottom: 32%;
+  left: 11%;
+  transform: translateX(-50%);
+  width: 4em;
+  height: auto;
+  object-fit: cover;
+  background-size: contain;
+}
+
+.sample4 {
+  position: absolute;
+  bottom: 32%;
+  left: 14%;
+  transform: translateX(-50%);
+  width: 4em;
+  height: auto;
+  object-fit: cover;
+  background-size: contain;
+}
+
+.sample5 {
+  position: absolute;
+  bottom: 32%;
+  left: 17%;
+  transform: translateX(-50%);
+  width: 4em;
+  height: auto;
+  object-fit: cover;
+  background-size: contain;
+}
+
+.sample6 {
+  position: absolute;
+  bottom: 32%;
+  left: 20%;
+  transform: translateX(-50%);
+  width: 4em;
+  height: auto;
+  object-fit: cover;
+  background-size: contain;
+}
+
+.boiling {
+  position: absolute;
+  bottom: 1%;
+  left: 45%;
+  transform: translateX(-50%);
+  width: 7em;
+  height: auto;
+  object-fit: cover;
+  background-size: contain;
+}
+
+.water {
+  position: absolute;
+  bottom: 1%;
+  left: 37%;
+  transform: translateX(-50%);
+  width: 15em;
+  height: auto;
+  object-fit: cover;
+  background-size: contain;
+}
+
+.container-img {
+  position: absolute;
+  bottom: 5%;
+  left: 35%;
+
+  width: 5em;
+  height: auto;
+  object-fit: contain;
+  background-size: contain;
+}
+
+.weighing-scale {
+  position: absolute;
+  bottom: 20px;
+  left: 25%;
+  transform: translateX(-50%);
+  width: 150px;
+
+
+
+
+  background-size: contain;
+}
+
+.bulk-machine {
+  position: absolute;
+  bottom: 20px;
+  left: 70%;
+  transform: translateX(-50%);
+  width: 250px;
+
+  object-fit: cover;
+
+
+  background-size: contain;
+}
+
+.bg-text {
+  color: #ccc;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.machine-img {
+  position: absolute;
+  width: 80px;
+  height: auto;
+}
+
+.bottom-panel {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.step-counter,
+.next-btn {
+  background: #2e7d32;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 25px;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease;
+}
+
+.step-counter:hover,
+.next-btn:hover {
+  background: #388e3c;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.25);
+}
+
+.spatchula {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 100px;
+
+  object-fit: contain;
+  rotate: 30deg;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
   }
 
-  tr:last-child td:first-child {
-    border-bottom-left-radius: 12px;
+  to {
+    width: 100%;
   }
-  tr:last-child td:last-child {
-    border-bottom-right-radius: 12px;
-  }
-  #displayTable{
-        cursor: pointer;
-    border-radius: 5px;
-    width: 165px;
-    height: 30px;
-    background-color: rgb(16, 190, 115);
-    color: white;
-    display: flex;
-    position: absolute;
-    top: 45%;
-    left: 44%;
-    z-index: 20;
-    font-size: 25px;
-    text-align: center;
-    padding-left: 12px;
-    font-weight: bolder;
-    opacity: 0;
-  }
-  .particles {
-    position: relative;
-    bottom: 15%;
-    left: 80%;
-    display: none;
-    transform: translateX(-50%);
-    width: 3em;
-    height: 7em;
-    object-fit: contain;
-    background-size: contain;
-    z-index: 6;
-    mix-blend-mode: color-dodge;
-  }
-  .sample1 {
-    position: absolute;
-    bottom: 32%;
-    left:5%;
-    transform: translateX(-50%);
-    width: 4em;
-    height: auto;
-    object-fit: cover;
-    background-size: contain;
-  }
-  .sample2 {
-    position: absolute;
-    bottom: 32%;
-    left: 8%;
-    transform: translateX(-50%);
-    width: 4em;
-    height: auto;
-    object-fit: cover;
-    background-size: contain;
-  }
-  .sample3 {
-    position: absolute;
-    bottom: 32%;
-    left: 11%;
-    transform: translateX(-50%);
-    width: 4em;
-    height: auto;
-    object-fit: cover;
-    background-size: contain;
-  }
-  .sample4 {
-    position: absolute;
-    bottom: 32%;
-    left: 14%;
-    transform: translateX(-50%);
-    width: 4em;
-    height: auto;
-    object-fit: cover;
-    background-size: contain;
-  }
-  .sample5 {
-    position: absolute;
-    bottom: 32%;
-    left: 17%;
-    transform: translateX(-50%);
-    width: 4em;
-    height: auto;
-    object-fit: cover;
-    background-size: contain;
-  }
-  .sample6 {
-    position: absolute;
-    bottom: 32%;
-    left: 20%;
-    transform: translateX(-50%);
-    width: 4em;
-    height: auto;
-    object-fit: cover;
-    background-size: contain;
-  }
+}
 
-  .boiling {
-    position: absolute;
-    bottom: 1%;
-    left: 45%;
-    transform: translateX(-50%);
-    width: 7em;
-    height: auto;
-    object-fit: cover;
-    background-size: contain;
-  }
-  .water{
-    position: absolute;
-    bottom: 1%;
-    left: 37%;
-    transform: translateX(-50%);
-    width: 15em;
-    height: auto;
-    object-fit: cover;
-    background-size: contain;
-  }
+.step-counter:active,
+.next-btn:active {
+  background: #2ec4b6;
+  color: black;
 
-  .container-img {
-    position: absolute;
-    bottom: 5%;
-    left: 35%;
+}
 
-    width: 5em;
-    height: auto;
-    object-fit: contain;
-    background-size: contain;
-  }
+.weighing-controls {
+  display: flex;
+  position: absolute;
+  bottom: 23px;
+  left: 25%;
+  transform: translateX(-50%);
+  align-items: center;
+  justify-content: space-between;
+  width: 120px;
+  gap: 0;
+}
 
-  .weighing-scale {
-    position: absolute;
-    bottom: 20px;
-    left: 25%;
-    transform: translateX(-50%);
-    width: 150px;
+.weighing-btn {
+  padding: 5px 10px;
+  border: 1px solid #cc0000;
+  background: linear-gradient(to bottom, #ff3333, #cc0000);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 2px 3px rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+  color: white;
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: bold;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
+  transition: all 0.1s ease;
+}
 
+.weighing-btn:hover {
+  background: linear-gradient(to bottom, #ff4444, #dd0000);
+}
 
-
-
-    background-size: contain;
-  }
-  .bulk-machine {
-    position: absolute;
-    bottom: 20px;
-    left: 70%;
-    transform: translateX(-50%);
-    width: 250px;
-
-    object-fit: cover;
-
-
-    background-size: contain;
-  }
-  .bg-text {
-    color: #ccc;
-    text-align: center;
-    margin-top: 20px;
-  }
-
-  .machine-img {
-    position: absolute;
-    width: 80px;
-    height: auto;
-  }
-
-  .bottom-panel {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-  }
-
-  .step-counter, .next-btn {
-    background: green;
-    border: 2px solid #2e31c4;
-    border-radius: 10px;
-    padding: 10px 20px;
-    color: white;
-    font-size: 16px;
-  }
-  .spatchula {
-    position: absolute;
-    bottom: 5%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100px;
-    height: 100px;
-
-    object-fit: contain;
-    rotate:30deg;
-  }
-
-  @keyframes typing {
-    from { width: 0; }
-    to { width: 100%; }
-  }
-  .step-counter:active, .next-btn:active {
-    background: #2ec4b6;
-    color: black;
-
-  }
-
-  .weighing-controls {
-    display: flex;
-    position: absolute;
-    bottom: 23px;
-    left: 20.17%;
-    transform: translateX(-50% -50%);
-    align-items: center;
-    gap: 14%;
-    
-
-  }
-
-  .weighing-btn {
-    padding: 1px 5px;
-
-    border: 1px solid red;
-    background:red;
-    color: white;
-    cursor: pointer;
-    font-size: .5em;
-
-    transition: background 0.3s ease;
-  }
-
-  /* .weighing-btn:hover {
+/* .weighing-btn:hover {
     background: #238f85;
   } */
 
-  .weighing-btn:active {
-    background: #1b6b63;
+.weighing-btn:active {
+  background: #1b6b63;
+}
+
+.weight-display {
+  color: #333;
+  font-family: "Digital-7", monospace;
+  font-weight: bold;
+  background-color: #e8f5e9;
+  border: 1px solid #c8e6c9;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  font-size: 18px;
+  text-align: right;
+  width: 5em;
+  padding: 2px 5px;
+  margin-bottom: 0;
+  /* display: none; Initially hidden */
+}
+
+/* Add blink animation */
+@keyframes blinkEffect {
+  0% {
+    opacity: 0;
   }
 
-  .weight-display {
-    color: #737171;
-    font-family: "Digital-7", monospace;
-    border-radius: 2px;
-    font-size: 16px;
-    text-align: right;
-    width: 5em;
-    margin-bottom: 10px;
-    /* display: none; Initially hidden */
+  25% {
+    opacity: 1;
   }
 
-  /* Add blink animation */
-  @keyframes blinkEffect {
-    0% { opacity: 0; }
-    25% { opacity: 1; }
-    50% { opacity: 0.5; }
-    75% { opacity: 1; }
-    100% { opacity: 1; }
+  50% {
+    opacity: 0.5;
   }
 
-  /* Class to apply when display is turned on */
-  .weight-display.active {
-    display: flex;
-    animation: blinkEffect 0.8s ease-in-out;
-    background-color: rgba(0, 0, 0, 0.1);
-    padding: 2px 5px;
-    border: 1px solid rgba(255, 0, 0, 0.3);
+  75% {
+    opacity: 1;
   }
 
+  100% {
+    opacity: 1;
+  }
+}
 
-
+/* Class to apply when display is turned on */
+.weight-display.active {
+  display: flex;
+  animation: blinkEffect 0.8s ease-in-out;
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 2px 5px;
+  border: 1px solid rgba(255, 0, 0, 0.3);
+}
