@@ -2,37 +2,88 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "This is a Sample Question 1?",
+      "question": "1. Sedimentation analysis is based on the principle that:",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "Particles dissolve in the fluid over time",
+        "b": "Particles settle at rates depending on their size and density",
+        "c": "Larger particles settle faster than smaller ones",
+        "d": "All particles settle at the same rate"
       },
       "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
-      },
-      "correctAnswer": "a",
-      "difficulty": "beginner"
-    },
-    {
-      "question": "This is a Sample Question 2?",
-      "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
-      },
-      "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+        "a": "Explanation",
+        "b": "Explanation",
+        "c": "Explanation",
+        "d": "Explanation"
       },
       "correctAnswer": "c",
+      "difficulty": "beginner"
+    },
+       {
+      "question": "2. The instrument used in the sedimentation method for sampling is called:",
+      "answers": {
+        "a": "Brookfield viscometer",
+        "b": "U-tube manometer",
+        "c": "Andreasen pipette",
+        "d": "Stalagmometer"
+      },
+      "explanations": {
+        "a": "Explanation",
+        "b": "Explanation",
+        "c": "Explanation",
+        "d": "Explanation"
+      },
+      "correctAnswer": "c",
+      "difficulty": "beginner"
+    },
+        {
+      "question": "3. Stokes’ Law is used to relate:",
+      "answers": {
+        "a": "Particle size to optical density",
+        "b": "Settling velocity to particle diameter and fluid properties",
+        "c": "Density to viscosity",
+        "d": "Volume to surface area"
+      },
+      "explanations": {
+        "a": "Explanation",
+        "b": "Explanation",
+        "c": "Explanation",
+        "d": "Explanation"
+      },
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+        {
+      "question": "4. In sedimentation analysis, the medium used for suspending particles is usually:",
+      "answers": {
+        "a": "Alcohol",
+        "b": "Distilled water",
+        "c": "Acetone",
+        "d": "Ether"
+      },
+      "explanations": {
+        "a": "Explanation",
+        "b": "Explanation",
+        "c": "Explanation",
+        "d": "Explanation"
+      },
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+        {
+      "question": "5. The unit of particle diameter determined using Stokes’ law is generally expressed in:",
+      "answers": {
+        "a": "Kilograms",
+        "b": "Micrometers (µm)",
+        "c": "Centimeters",
+        "d": "Liters"
+      },
+      "explanations": {
+        "a": "Explanation",
+        "b": "Explanation",
+        "c": "Explanation",
+        "d": "Explanation"
+      },
+      "correctAnswer": "b",
       "difficulty": "beginner"
     }
   ]
