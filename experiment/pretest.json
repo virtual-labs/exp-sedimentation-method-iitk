@@ -9,12 +9,7 @@
         "c": "Larger particles settle faster than smaller ones",
         "d": "All particles settle at the same rate"
       },
-      "explanations": {
-        "a": "Explanation",
-        "b": "Explanation",
-        "c": "Explanation",
-        "d": "Explanation"
-      },
+     
       "correctAnswer": "c",
       "difficulty": "beginner"
     },
@@ -26,12 +21,7 @@
         "c": "Andreasen pipette",
         "d": "Stalagmometer"
       },
-      "explanations": {
-        "a": "Explanation",
-        "b": "Explanation",
-        "c": "Explanation",
-        "d": "Explanation"
-      },
+      
       "correctAnswer": "c",
       "difficulty": "beginner"
     },
@@ -43,12 +33,7 @@
         "c": "Density to viscosity",
         "d": "Volume to surface area"
       },
-      "explanations": {
-        "a": "Explanation",
-        "b": "Explanation",
-        "c": "Explanation",
-        "d": "Explanation"
-      },
+      
       "correctAnswer": "b",
       "difficulty": "beginner"
     },
@@ -60,12 +45,7 @@
         "c": "Acetone",
         "d": "Ether"
       },
-      "explanations": {
-        "a": "Explanation",
-        "b": "Explanation",
-        "c": "Explanation",
-        "d": "Explanation"
-      },
+      
       "correctAnswer": "b",
       "difficulty": "beginner"
     },
@@ -77,12 +57,7 @@
         "c": "Centimeters",
         "d": "Liters"
       },
-      "explanations": {
-        "a": "Explanation",
-        "b": "Explanation",
-        "c": "Explanation",
-        "d": "Explanation"
-      },
+      
       "correctAnswer": "b",
       "difficulty": "beginner"
     }
