@@ -1,0 +1,65 @@
+{
+  "version": 2.0,
+  "questions": [
+    {
+      "question": "1. The Andreasen pipette is positioned at a fixed depth to:",
+      "answers": {
+        "a": "Prevent evaporation",
+        "b": "Measure viscosity of fluid",
+        "c": "Ensure sampling from a consistent level during sedimentation",
+        "d": "Increase settling speed"
+      },
+      
+      "correctAnswer": "c",
+      "difficulty": "beginner"
+    },
+       {
+      "question": "2. The mass of solids obtained at different time intervals helps to:",
+      "answers": {
+        "a": "Determine the density of the fluid",
+        "b": "Calculate the particle size distribution",
+        "c": "Measure viscosity",
+        "d": "Determine temperature variation"
+      },
+      
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+        {
+      "question": "3. If larger particles settle faster, samples taken at later times will contain:",
+      "answers": {
+        "a": "More coarse particles",
+        "b": "No solid material",
+        "c": "Finer particles still in suspension",
+        "d": "Equal proportions of all particles"
+      },
+      
+      "correctAnswer": "c",
+      "difficulty": "beginner"
+    },
+        {
+      "question": "4. The final graph plotted in this experiment is between:",
+      "answers": {
+        "a": "Particle mass and time",
+        "b": "Velocity and density",
+        "c": "Cumulative percentage of particles finer than each size vs. particle diameter",
+        "d": "Density and viscosity"
+      },
+      
+      "correctAnswer": "c",
+      "difficulty": "beginner"
+    },
+        {
+      "question": "5. The sedimentation method is most suitable for determining particle sizes in the range of:",
+      "answers": {
+        "a": "0.05–0.5 µm",
+        "b": "0.5–100 µm",
+        "c": "100–1000 µm",
+        "d": "Above 1 mm"
+      },
+      
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    }
+  ]
+}
